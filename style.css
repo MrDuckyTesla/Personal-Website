@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#p5js {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+canvas {
+  display: block;
+}
