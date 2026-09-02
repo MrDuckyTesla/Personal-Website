@@ -1,3 +1,27 @@
+class Background1 {
+	constructor() {
+		// Create a list to store all snowflakes
+		this.snowList = []; 
+		this.avg = (windowWidth + windowHeight) / 4;
+		// Add snowflakes to the list with a random size
+		for (let i = 0; i < this.avg; i++) {
+		  // Radius gets a random number from 10 to 40 
+		  this.snowList.push(new Snowflake(random(this.avg/10)+10));
+		}
+	}
+	
+	update() {
+		// Go through list and update snowflakes
+		for (let i = 0; i < this.snowList.length; i++) {
+		  this.snowList[i].update(this.avg);
+		}
+
+		if (frameRate() < 45) {
+		  this.snowList.pop();
+		}
+	}
+}
+
 class Snowflake {
   
   // Create a snowflake
@@ -19,16 +43,15 @@ class Snowflake {
   }
   
   // Move and draw snowflakde
-  update() {
+  update(avg=300) {
 	
     let dx = this.x - mouseX;
     let dy = this.y - mouseY;
-    let d = dx * dx + dy * dy + this.r;
+	
+    let d = max(dx * dx + dy * dy + this.r, 0.01);
 
     this.vx = this.fallX;
     this.vy = this.fallY;
-
-	avg = (windowWidth + windowHeight) / 4;
 	
 	this.vx += dx*avg/d;
 	this.vy += dy*avg/d;

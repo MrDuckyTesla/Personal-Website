@@ -1,28 +1,19 @@
-// Create a list to store all snowflakes
-let snowList = [], avg;
+let bg;
 
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("p5js");
   // noCursor();
   noSmooth(); noStroke();
+  bg = new Background1();
   
-  avg = (windowWidth + windowHeight) / 4;
-  // Add snowflakes to the list with a random size
-  for (let i = 0; i < avg; i++) {
-    // Radius gets a random number from 10 to 40 
-    snowList.push(new Snowflake(random(avg/10)+10));
-  }
 }
 
 function draw() {
   background(220);
   // circle(mouseX, mouseY, 100);
+  bg.update();
   
-  // Go through list and update snowflakes
-  for (let i = 0; i < snowList.length; i++) {
-    snowList[i].update();
-  }
 }
 
 function windowResized() {
