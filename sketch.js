@@ -6,21 +6,33 @@ function setup() {
   // noCursor();
   noSmooth(); noStroke();
   num = random();
-  if (num > 0.8) {
-	bg = new Background1();
-  }
-  else if (num > 0.6) {
-  	bg = new Background2(canvas);
-  }
-  else if (num > 0.4) {  
-  	bg = new Background3();
-  }
-  else if (numm > 0.2) {
-	bg = new Background4();
+  
+  if ("ontouchstart" in window) {
+	if (num > 0.5) {
+	  bg = new Background1();
+	}
+	else {
+	  bg = new Background2(canvas);
+	}
   }
   else {
-	bg = new Background5();
+	if (num > 0.6) {
+	  bg = new Background1();
+	}
+	else if (num > 0.2) {
+	  bg = new Background2(canvas);
+	}
+	else if (num > 0.15) {  
+	  bg = new Background3();
+	}
+	else if (num > 0.1) {
+	  bg = new Background4();
+	}
+	else {
+	  bg = new Background5();
+	}
   }
+  
   
   
 }
