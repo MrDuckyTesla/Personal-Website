@@ -6,12 +6,17 @@ function setup() {
   // noCursor();
   noSmooth(); noStroke();
   num = random();
-  if (num > 0.5) {
+  if (num > 0.66) {
 	bg = new Background1();
   }
-  else {
+  else if (num > 0.33) {
   	bg = new Background2(canvas);
   }
+  else {  
+  	bg = new Background3();
+  }
+  
+  bg = new Background5();
   
 }
 
