@@ -5,12 +5,18 @@ function setup() {
   canvas.parent("p5js");
   // noCursor();
   noSmooth(); noStroke();
-  bg = new Background1();
+  num = random();
+  if (num > 0.5) {
+	bg = new Background1();
+  }
+  else {
+  	bg = new Background2(canvas);
+  }
   
 }
 
 function draw() {
-  background(220);
+  background(60);
   // circle(mouseX, mouseY, 100);
   bg.update();
   

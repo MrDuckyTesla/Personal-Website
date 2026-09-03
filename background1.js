@@ -16,9 +16,9 @@ class Background1 {
 		  this.snowList[i].update(this.avg);
 		}
 
-		if (frameRate() < 45) {
-		  this.snowList.pop();
-		}
+		// if (frameRate() < 45) {
+		//   this.snowList.pop();
+		// }
 	}
 }
 
