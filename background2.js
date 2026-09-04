@@ -89,7 +89,8 @@ class Ball {
       this.vx *= -1;
     }
     // Fix ball if touching floor
-    if (this.y + this.d/2 >= height) {
+	let touchingFloor = this.y + this.d/2 >= height;
+    if (touchingFloor) {
       // Fix position
       this.y = height - this.d/2;
       // Apply friction
@@ -98,7 +99,7 @@ class Ball {
     }
     // If the ball isnt moving, shrink it
     if (abs(this.vx) <= 0.01 && abs(this.vy) <= 1) {
-      this.d--;
+      this.d--; if (touchingFloor) {this.y += 2;}
     }
 
     fill(this.c);
