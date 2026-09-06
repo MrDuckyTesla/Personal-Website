@@ -6,14 +6,14 @@
 
 class Background4 {
 	constructor() {
-		this.player, this.enemies = [], this.numEnemies = 5, this.uniqueID = 0;
+		this.enemies = [], this.numEnemies = 50, this.uniqueID = 0;
 		// Create the menu/player
 		// menu = new Menu();
-		this.player = new Player();
+		// this.player = new Player();
 		// Create and add all the enemies to a list
 		for(let i = 0; i < this.numEnemies; i++) {
 		  this.uniqueID ++;
-		  this.enemies.push(new Enemy(this.player, this.uniqueID));
+		  this.enemies.push(new Enemy(this.uniqueID));
 		}
 	}
 	
@@ -22,7 +22,7 @@ class Background4 {
 		// if (menu.play) {
 		  // Slow down the framerate
 		  frameRate(30);
-		  this.player.update();
+		  // this.player.update();
 		  // Update the enemies
 		  for(let i = 0; i < this.numEnemies; i++) {
 		    for (let j = 0; j < this.numEnemies; j++) {
@@ -30,23 +30,23 @@ class Background4 {
 		      if (this.enemies[i].collisionEnemy(this.enemies[j].x, this.enemies[j].y, this.enemies[j].w, this.enemies[j].h, this.enemies[j].size, this.enemies[j].sizeSub) == "dead"){
 		        this.enemies.splice(j, 1);
 		        this.uniqueID ++;
-		        this.enemies.push(new Enemy(this.player, this.uniqueID));
+		        this.enemies.push(new Enemy(this.uniqueID));
 		      }
 		    }
 		    // Update the enemies
-		    let temp = iterateMin(this.enemies, i, this.player);
+		    let temp = iterateMin(this.enemies, i);
 		    // If the player name is dev, change the difficulty to "dev" mode
-		    if (this.player.playerName.toLowerCase() == "dev") {
-		      this.enemies[i].jump(0, temp[0], temp[1], temp[2]);
-		    }
+		    // if (this.player.playerName.toLowerCase() == "dev") {
+		    //   this.enemies[i].jump(0, temp[0], temp[1], temp[2]);
+		    // }
 		    // Else, keep the difficulty normal (it was all an illusion of choice)
-		    else {
-		      this.enemies[i].jump(2, temp[0], temp[1], temp[2]);
-		    }
+		    // else {
+		    this.enemies[i].jump(2, temp[0], temp[1], temp[2]);
+		    // }
 		    this.enemies[i].update();
 		    // If the players name is "MrDuckyTesla", or "MDT", dont kill it
-		    if (this.player.playerName.toLowerCase() != "mrduckytesla") {
-		      if (this.player.playerName.toLowerCase() != "mdt") {
+		    // if (this.player.playerName.toLowerCase() != "mrduckytesla") {
+		    //   if (this.player.playerName.toLowerCase() != "mdt") {
 		        // If the player is dead
 		        // if (enemies[i].collision() == "true" && player.playerName.toLowerCase() != "tesla") {
 		        //   textSize(100);
@@ -56,8 +56,8 @@ class Background4 {
 		        //   // Stop the program
 		        //   noLoop();
 		        // }
-		      }
-		    }
+		    //   }
+		    // }
 		    // If an enemy collides, splice and replace it
 		    if (this.enemies[i].collision() == "dead") {
 		      this.enemies.splice(i, 1);
@@ -74,25 +74,25 @@ class Background4 {
 	}
 }
 // Iterate through every enemy, and find the nearest entity
-function iterateMin(list, index, player) {
+function iterateMin(list, index) {
   // List to store all x coords, y coords, size, number to add and the adding boolean
   let nearList = [[], [], []];
   // Push the player
-  nearList[0].push([player.x, player.y, player.size]);
-  nearList[1].push(list[index].size > player.size);
-  nearList[2].push([dist(player.x, player.y, list[index].x, list[index].y), 0, true, 0]);  // Normal distance
-  nearList[2].push([dist(player.x + width, player.y, list[index].x, list[index].y), width, true, 0]);  // Right Distance
-  nearList[2].push([dist(player.x - width, player.y, list[index].x, list[index].y), -width, true, 0]);  // Left Distance
-  nearList[2].push([dist(player.x, player.y + height, list[index].x, list[index].y), height, false, 0]);  // Up Distance
-  nearList[2].push([dist(player.x, player.y - height, list[index].x, list[index].y), -height, false, 0]);  // Down Distance
+  // nearList[0].push([player.x, player.y, player.size]);
+  // nearList[1].push(list[index].size > player.size);
+  // nearList[2].push([dist(player.x, player.y, list[index].x, list[index].y), 0, true, 0]);  // Normal distance
+  // nearList[2].push([dist(player.x + width, player.y, list[index].x, list[index].y), width, true, 0]);  // Right Distance
+  // nearList[2].push([dist(player.x - width, player.y, list[index].x, list[index].y), -width, true, 0]);  // Left Distance
+  // nearList[2].push([dist(player.x, player.y + height, list[index].x, list[index].y), height, false, 0]);  // Up Distance
+  // nearList[2].push([dist(player.x, player.y - height, list[index].x, list[index].y), -height, false, 0]);  // Down Distance
   
   // Push the enemies
-  let counter = 1;
+  let counter = 0;
   for(let i = 0; i < list.length; i++) {
     if (list[i].uniqueID != list[index].uniqueID) {
       nearList[0].push([list[i].x, list[i].y, list[i].size]);
       nearList[1].push(list[index].size > list[i].size);
-      nearList[2].push([dist(list[i].x, list[i].y, list[index].x, list[index].y), 0, false, i]);  // Normal distance
+      nearList[2].push([dist(list[i].x, list[i].y, list[index].x, list[index].y), 0, false, counter]);  // Normal distance
       nearList[2].push([dist(list[i].x + width, list[i].y, list[index].x, list[index].y), width, true, counter]);  // Right Distance
       nearList[2].push([dist(list[i].x - width, list[i].y, list[index].x, list[index].y), -width, true, counter]);  // Left Distance
       nearList[2].push([dist(list[i].x, list[i].y + height, list[index].x, list[index].y), height, false, counter]);  // Up Distance
@@ -102,7 +102,7 @@ function iterateMin(list, index, player) {
   }
   // Push all distances
   let minList = [];
-  for (let i = 0; i < nearList[2].length - 1; i++) {
+  for (let i = 0; i < nearList[2].length; i++) {
       minList.push(nearList[2][i][0]);
   }
   // Get smallest distance
@@ -244,24 +244,24 @@ class Player {
 }
 
 class Enemy {
-  constructor(player, uniqueID) {
+  constructor(uniqueID) {
     // Creating varables for class
-    this.player = player;
+    // this.player = player;
     this.x = random(width);
     this.prevX = 0;
     this.y = random(height);
-    this.size = random(this.player.size-15, this.player.size+15);
+    this.size = random(50, 100);
     this.sizeSub = 0; // This subtracts from the enemies size if it exceeds 140
     // Keeps the enemy away from player
-    if (dist(this.player.x, this.player.y, this.x, this.y) - this.size/2 <= ((this.player.size - this.sizeSub)/2)*5) {
-      while(dist(this.player.x, this.player.y, this.x, this.y) - this.size/2 <= ((this.player.size  - this.sizeSub)/2)*5) {
-        // Reassign variables
-        this.size = random((this.player.size - this.player.sizeSub)-15, (this.player.size - this.player.sizeSub)+15);
-        this.sizeSub = 0;
-        this.x = random(width);
-        this.y = random(height);
-      }
-    }
+    //if (dist(this.player.x, this.player.y, this.x, this.y) - this.size/2 <= ((this.player.size - this.sizeSub)/2)*5) {
+    //  while(dist(this.player.x, this.player.y, this.x, this.y) - this.size/2 <= ((this.player.size  - this.sizeSub)/2)*5) {
+    //    // Reassign variables
+    //    this.size = random((this.player.size - this.player.sizeSub)-15, (this.player.size - this.player.sizeSub)+15);
+    //    this.sizeSub = 0;
+    //    this.x = random(width);
+    //    this.y = random(height);
+    //  }
+    //}
     this.color = [random(this.size - this.sizeSub, 256), random(this.size - this.sizeSub, 256), random(this.size - this.sizeSub, 256)];
     // Real size of the enemy without sizeSub
     this.actualSize = this.size;
@@ -309,7 +309,7 @@ class Enemy {
     this.y += this.vel;
     // Bring back the enemy if out of bounds
     this.getBackHere();
-    this.collision();
+    // this.collision();
     this.show();
   }
   show() {
@@ -322,7 +322,7 @@ class Enemy {
     // Display the text above the enemy
     textAlign(CENTER);
     textSize((this.size - this.sizeSub)/3);
-    text("\n" + this.enemyName, this.x, this.y - this.w*2);
+    // text("\n" + this.enemyName, this.x, this.y - this.w*2);
     // Push current state before translating/rotating
     push();
     translate(this.x, this.y);
@@ -347,21 +347,21 @@ class Enemy {
   }
   collision() {
     // Collision between player and enemy
-    if (this.x - this.h/2 <= this.player.x + this.player.h/2 && this.x + this.h/2 >= this.player.x - this.player.h/2 && this.y - this.w/2 <= this.player.y + this.player.w/2 && this.y+this.w/2 >= this.player.y - this.player.w/2) {
-      if (this.player.size < this.size) {
-        // Player loses
-        return "true";
-      }
-      else if (this.player.size > this.size) {
-        // this.player.size += (this.size - this.sizeSub)/100;
-        // Player gains size
-        return "dead";
-      }
-    }
-    else {
-      // No collision takes place
-      return "false";
-    }
+    // if (this.x - this.h/2 <= this.player.x + this.player.h/2 && this.x + this.h/2 >= this.player.x - this.player.h/2 && this.y - this.w/2 <= this.player.y + this.player.w/2 && this.y+this.w/2 >= this.player.y - this.player.w/2) {
+    //   if (this.player.size < this.size) {
+    //     // Player loses
+    //     return "true";
+    //   }
+    //   else if (this.player.size > this.size) {
+    //     // this.player.size += (this.size - this.sizeSub)/100;
+    //     // Player gains size
+    //     return "dead";
+    //   }
+    // }
+    // else {
+    //   // No collision takes place
+    //   return "false";
+    // }
   }
   collisionEnemy(x, y, w, h, size, sizeSub) {
     // Collision between enemy and enemy
