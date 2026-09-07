@@ -18,6 +18,7 @@ class Background4 {
 	}
 	
 	update() {
+		background(60);
 		// If the menu is false
 		// if (menu.play) {
 		  // Slow down the framerate

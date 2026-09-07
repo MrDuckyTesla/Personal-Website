@@ -11,7 +11,7 @@ class Background3{
 	}
 	
 	update() {
-		// background(50);
+		background(60);
 		image(this.circ1, 0, 0, width, height);
 		let res = floor((width + height) / 40);
 		if (pmouseX != mouseX || pmouseY != mouseY || frameCount == 1) {  // If the mouse moves

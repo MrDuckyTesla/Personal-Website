@@ -11,6 +11,7 @@ class Background1 {
 	}
 	
 	update() {
+		background(60);
 		// Go through list and update snowflakes
 		for (let i = 0; i < this.snowList.length; i++) {
 		  this.snowList[i].update(this.avg);

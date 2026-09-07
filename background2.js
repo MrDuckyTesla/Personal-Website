@@ -9,6 +9,7 @@ class Background2 {
 	}
 
 	update() {
+		background(60);
 		// Go through list and update balls
 		for (let i = 0; i < this.balls.length; i ++) {
 		  this.balls[i].update();

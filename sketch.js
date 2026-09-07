@@ -13,11 +13,12 @@ function setup() {
   //	else {bg = new Background2(canvas);}
   // }
   // else {
-	if (num > 0.7) {bg = new Background1();}
-	else if (num > 0.4) {bg = new Background2(canvas);}
-	else if (num > 0.1) {bg = new Background4();}
-	else if (num > 0.05) {bg = new Background3();}
-	else if (num > 0) {bg = new Background5();}
+	if (num > 0.66) {bg = new Background1();}
+	else if (num > 0.33) {bg = new Background2(canvas);}
+	else if (num > 0) {bg = new Background6();}
+	// else if (num > 0.2) {bg = new Background4();}
+	// else if (num > 0.1) {bg = new Background3();}
+	// else if (num > 0) {bg = new Background5();}
   // }
   
   
@@ -25,7 +26,7 @@ function setup() {
 }
 
 function draw() {
-  background(60);
+  // background(60);
   // circle(mouseX, mouseY, 100);
   bg.update();
   
@@ -33,4 +34,5 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  background(60);
 }

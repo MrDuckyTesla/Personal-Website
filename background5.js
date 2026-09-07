@@ -22,6 +22,7 @@ class Background5 {
 	}
 	
 	update() {
+		background(60);
 		// Move the player
 		this.movePlayer(10);
 		this.randomNum[0][0] += 0.01;
