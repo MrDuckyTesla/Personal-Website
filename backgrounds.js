@@ -202,7 +202,7 @@ class SnakeMove {
 	
 	update() {
 	  let dx, dy, r = noise(this.perlin[0])*(width+height)/16;
-	  if (dist(mouseX, mouseY, this.ax, this.ay) > 3 || pmouseX - mouseX > 0 || pmouseY - mouseY > 0) {
+	  if (dist(mouseX, mouseY, this.ax, this.ay) > 3 || abs(pmouseX - mouseX) > 0 || abs(pmouseY - mouseY) > 0) {
 	    dx = mouseX - this.x; dy = mouseY - this.y;
 	    this.ax = this.x; this.ay = this.y;
 	  } else {
