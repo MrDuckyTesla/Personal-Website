@@ -311,3 +311,56 @@ class Particle  {
 	  circle(this.x, this.y, this.r);
 	}
 }
+
+class SnakeRadial {
+	constructor(canvas, makeMore) {
+		this.perlin = []; this.radials = [];
+		canvas.mouseClicked(() => this.changePerlin());
+		this.x = width/2, this.y = height/2, this.ax = width/2, this.ay = height/2;
+		for (let i = 0; i < 6; i++) {
+		  this.perlin.push(random(9999999));
+		  if (makeMore) {
+			this.radials.push(new SnakeRadial(canvas, false));
+		  }
+		}
+		background(60);
+	}
+	
+	update() {
+		if (this.radials.length > 0) {
+			for (let i = 0; i < this.radials.length; i++) {
+				this.radials[i].update();
+			}
+		}
+	  let dx, dy, r = noise(this.perlin[0])*(width+height)/16;
+	 
+	    
+	  let nx = width * cos(this.perlin[4])*noise(this.perlin[4])+width/2;
+	  let ny = height * sin(this.perlin[5])*noise(this.perlin[5])+height/2;
+	    
+	    // circle(nx, ny, 10);
+	    
+	  dx = nx - this.x;
+	  dy = ny - this.y;
+	  
+	  
+	  let d = sqrt(dx * dx + dy * dy);
+	  if (d == 0) {d = 0.001;} 
+
+	  let s = min(10, d)
+	  
+	  this.x += (dx / d)*s;
+	  this.y += (dy / d)*s;
+	  
+	  fill(noise(this.perlin[1])*256, noise(this.perlin[2])*256, noise(this.perlin[3])*256);
+	  circle(this.x, this.y, r);
+	  for (let i = 0; i < this.perlin.length; i++) {
+	    this.perlin[i] += 0.01;
+	  }
+	}
+	
+	changePerlin() {
+		this.perlin[4] = random(9999999);
+		this.perlin[5] = random(9999999);
+	}
+}
