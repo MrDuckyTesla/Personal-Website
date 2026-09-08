@@ -236,9 +236,9 @@ class ParticalRadial {
 	constructor() {
 		this.particles = [];
 		this.avg = (windowWidth + windowHeight) / 4;
-		for (let i = 0; i < this.avg/2; i++) {
+		for (let i = 0; i < this.avg; i++) {
 		  // Radius gets a random number from 10 to 40 
-		  this.particles.push(new Particle(random(this.avg/15)+50));
+		  this.particles.push(new Particle(random(this.avg/10)+10));
 		}
 	}
 	
