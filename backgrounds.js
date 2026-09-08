@@ -315,23 +315,28 @@ class Particle  {
 class SnakeRadial {
 	constructor(canvas, makeMore) {
 		this.perlin = []; this.radials = [];
-		canvas.mouseClicked(() => this.changePerlin());
 		this.x = width/2, this.y = height/2, this.ax = width/2, this.ay = height/2;
 		for (let i = 0; i < 6; i++) {
 		  this.perlin.push(random(9999999));
 		}
-		for (let i = 0; i < 20; i++) {
-			if (makeMore) {
+		if (makeMore) {
+			canvas.mouseClicked(() => this.changePerlin());
+			canvas.style('background-color', 'rgb(60, 60, 60)');
+			for (let i = 0; i < 20; i++) {
 				this.radials.push(new SnakeRadial(canvas, false));
 			}
 		}
 		this.makeMore = makeMore;
-		background(60);
+		// background(60);
 	}
 	
 	update() {
 		if (this.makeMore) {
-		background(60, 60, 60, 2);
+			//background(60, 60, 60, 10);
+			drawingContext.globalCompositeOperation = 'destination-out';
+			fill(60, 60, 60, 5);
+			rect(0, 0, width, height);
+			drawingContext.globalCompositeOperation = 'source-over';
 		}
 		if (this.radials.length > 0) {
 			for (let i = 0; i < this.radials.length; i++) {
@@ -366,6 +371,11 @@ class SnakeRadial {
 	}
 	
 	changePerlin() {
+		if (this.makeMore) {
+			for (let i = 0; i < this.radials.length; i++) {
+				this.radials[i].changePerlin();
+			}
+		}
 		this.perlin[4] = random(9999999);
 		this.perlin[5] = random(9999999);
 	}
