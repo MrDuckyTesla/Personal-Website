@@ -319,14 +319,20 @@ class SnakeRadial {
 		this.x = width/2, this.y = height/2, this.ax = width/2, this.ay = height/2;
 		for (let i = 0; i < 6; i++) {
 		  this.perlin.push(random(9999999));
-		  if (makeMore) {
-			this.radials.push(new SnakeRadial(canvas, false));
-		  }
 		}
+		for (let i = 0; i < 20; i++) {
+			if (makeMore) {
+				this.radials.push(new SnakeRadial(canvas, false));
+			}
+		}
+		this.makeMore = makeMore;
 		background(60);
 	}
 	
 	update() {
+		if (this.makeMore) {
+		background(60, 60, 60, 2);
+		}
 		if (this.radials.length > 0) {
 			for (let i = 0; i < this.radials.length; i++) {
 				this.radials[i].update();
