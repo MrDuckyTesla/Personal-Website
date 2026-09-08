@@ -231,3 +231,83 @@ class SnakeMove {
 	  }
 	}
 }
+
+class ParticalRadial {
+	constructor() {
+		this.particles = [];
+		this.avg = (windowWidth + windowHeight) / 4;
+		for (let i = 0; i < this.avg/2; i++) {
+		  // Radius gets a random number from 10 to 40 
+		  this.particles.push(new Particle(random(this.avg/15)+50));
+		}
+	}
+	
+	update() {
+		background(60);
+
+		// Go through list and update snowflakes
+		for (let i = 0; i < this.particles.length; i++) {
+		  this.particles[i].update();
+		}
+	}
+}
+
+class Particle  {
+	constructor(r=20) {
+		this.r = r;
+		this.c = [random(256), random(256), random(256)];
+		  
+		// Give the snowflake a random x position
+		this.x = random(width + this.r);
+		this.y = random(height + this.r)
+
+	  	this.vx = 0;
+		this.vy = 0;
+		  
+		// Tell the snowflake how much to move it by
+		this.fallX = random(3)+1;  // can move from 1 to 4
+		this.fallY = random(3)+1; // can movefrom 1 to 4
+
+		this.radial = random(4000000);
+		this.perlin = random(100000);
+		
+		this.radX = random(7000);
+		this.radY = random(7000);
+
+
+		this.left = false;
+	}
+	
+	update() {
+
+	  let dx = this.x - mouseX;
+	  let dy = this.y - mouseY;
+	  let d = dx * dx + dy * dy + this.r;
+
+	  let radius = noise(this.perlin)*this.radial;
+	  let force = (d - radius) * 0.005;
+
+	  let nx = dx/d, ny = dy/d;
+	  
+	  this.vx -= nx * force * 0.07;
+	  this.vy -= ny * force * 0.07;
+
+	  this.vx += ny*this.radX*noise(this.perlin) * (this.left? 1 : -1);
+	  this.vy += nx*this.radY*noise(this.perlin) * (this.left? -1 : 1);
+
+	  this.vx = constrain(this.vx, -this.fallX * 3, this.fallX * 3);
+	  this.vy = constrain(this.vy, -this.fallY * 3, this.fallY * 3);
+	  
+	  this.x += this.vx;
+	  this.y += this.vy;
+
+	  this.vx *= 0.75;
+	  this.vy *= 0.75;
+
+	  this.perlin += 0.001;
+	  
+	  // Draw the snowflake
+	  fill(this.c[0], this.c[1], this.c[2]);
+	  circle(this.x, this.y, this.r);
+	}
+}
