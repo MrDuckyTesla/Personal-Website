@@ -8,6 +8,11 @@ function setup() {
   num = random();
   isMobile = /android|iphone|/i.test(navigator.userAgent);
   
+  drawingContext.globalCompositeOperation = 'destination-out';
+  fill(60, 60, 60, 5);
+  rect(0, 0, width, height);
+  drawingContext.globalCompositeOperation = 'source-over';
+  
   // if (isMobile) {
   //	if (num > 0.5) {bg = new Background1();}
   //	else {bg = new Background2(canvas);}
