@@ -13,7 +13,6 @@ function setup() {
   //	else {bg = new Background2(canvas);}
   // }
   // else {
-	if (num > 0.8) {bg = new SnowFall();}
 	if (num > 0.75) {bg = new SnowFall();}
 	else if (num > 0.5) {bg = new BallBounce(canvas);}
 	else if (num > 0.25) {bg = new SnakeMove();}
