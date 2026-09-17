@@ -120,6 +120,7 @@ class Ball {
     this.ay = 0.5;
 
     this.d = diameter;
+	this.ad = diameter;
     this.c = colorRGB;
 
     this.randX = random(999999);
@@ -179,6 +180,9 @@ class Ball {
     if (abs(this.vx) <= 0.01 && abs(this.vy) <= 1) {
       this.d--; if (touchingFloor) {this.y += 2;}
     }
+	else if (this.d < this.ad) {
+		this.d++;
+	}
 
     fill(this.c);
     circle(this.x, this.y, this.d);
