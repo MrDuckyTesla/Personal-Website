@@ -33,7 +33,9 @@ function changeRandom() {
 	else if (num > 0.25) {bg = new SnakeMove();}
 	else if (num > 0) {bg = new ParticalRadial();}
 } function changeSaved() {
-	switch (getBackground()) {
+	if (getBackground() == null) {
+		resetBackground();
+	} switch (getBackground()) {
 		case "Off": bg = new Off(); break;
 		case "Bouncy": changeBounce(); break;
 		case "Repel": changeSnow(); break;
