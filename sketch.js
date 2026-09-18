@@ -34,7 +34,7 @@ function changeRandom() {
 	else if (num > 0) {bg = new ParticalRadial();}
 } function changeSaved() {
 	if (getBackground() == null) {
-		resetBackground();
+		setBackground("Random"); setColor("60, 60, 60"); setOpacity(30);
 	} switch (getBackground()) {
 		case "Off": bg = new Off(); break;
 		case "Bouncy": changeBounce(); break;
