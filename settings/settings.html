@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+  		<title>Settings</title>
+    	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>
+    	
+    	<script src="../sketch.js"></script>
+    	<script src="../toolkit.js"></script>
+    	<script src="../backgrounds.js"></script>
+    
+    	<link rel="stylesheet" type="text/css" href="../style.css">
+    	<link rel="icon" type="image/x-icon" href="../icon.ico">
+    	<meta charset="utf-8" />
+
+  	</head>
+  	<body>
+    	<div id="p5js"></div>
+    	<main>
+      		<a href="../index.html">Home</a>
+      		<h1>Background: </h1>
+			<input type="range" id="bkg" min="0" max="5" value="5">
+			<span id="bkgVal">Random</span>
+			<div><a href="#" onclick="resetBackground()">Reset</a></div>
+			<script>
+				const sliderBkg = document.getElementById("bkg");
+				const outputBkg = document.getElementById("bkgVal");
+				const savedBackground = getBackground();
+      			if (savedBackground !== null) {sliderBkg.value = getBackgroundVal(savedBackground);}
+				outputBkg.textContent = getBackgroundVal(sliderBkg.value);
+				sliderBkg.addEventListener("input", function () {
+					let bkg = getBackgroundVal(sliderBkg.value);
+					outputBkg.textContent = bkg;
+					setBackground(bkg); changeSaved();
+				}); function getBackgroundVal(value) {
+					switch (value) {
+						case "0": return "Off";
+						case "1": return "Bouncy";
+						case "2": return "Repel";
+						case "3": return "Radial";
+						case "4": return "Follow";
+						case "5": return "Random";
+						case "Off": return "0";
+						case "Bouncy": return "1";
+						case "Repel": return "2";
+						case "Radial": return "3";
+						case "Follow": return "4";
+						case "Random": return "5";
+						default: return "-1";
+					}
+				}
+			</script>
+      		<h1>Opacity: </h1>
+      		<input type="range" id="opa" min="0" max="100" value="30">
+      		<span id="opaVal">70%</span>
+      		<div><a href="#" onclick="resetOpacity()">Reset</a></div>
+      		<script>
+      			const sliderOpa = document.getElementById("opa");
+      			const outputOpa = document.getElementById("opaVal");
+      			const savedOpacity = getOpacity();
+      			if (savedOpacity !== null) {sliderOpa.value = savedOpacity;}
+      			document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
+      			outputOpa.textContent = getOpacityVal(sliderOpa.value);
+				sliderOpa.addEventListener("input", function () {
+					let opa = getOpacityVal(sliderOpa.value);
+					outputOpa.textContent = opa;
+					document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
+					setOpacity(sliderOpa.value);
+				}); function getOpacityVal(value) {return (100-Number(value))+"%";}
+			</script>
+      		<h1>Color: </h1>
+      		<span id="clrVal">60, 60, 60</span>
+      		<div><input type="range" id="clrR" min="0" max="255" value="60"></div>
+      		<div><input type="range" id="clrG" min="0" max="255" value="60"></div>
+      		<div><input type="range" id="clrB" min="0" max="255" value="60"></div>
+      		<div><a href="#" onclick="resetColor()">Reset</a></div>
+      		<script>
+      			const sliderClrR = document.getElementById("clrR");
+      			const sliderClrG = document.getElementById("clrG");
+      			const sliderClrB = document.getElementById("clrB");
+      			const outputClr = document.getElementById("clrVal");
+      			const savedColor = getColor();
+      			if (savedColor !== null) {
+      				const [r, g, b] = savedColor.split(", ");
+      				sliderClrR.value = r; sliderClrG.value = g; sliderClrB.value = b;
+      			} outputClr.textContent = sliderClrR.value + ", " + sliderClrG.value + ", " + sliderClrB.value;
+				[sliderClrR, sliderClrG, sliderClrB].forEach(slider => {
+      				slider.addEventListener("input", () => {
+      					outputClr.textContent = getNewColorStr();
+      					setColor(getNewColorStr());
+      				});
+      			}); function getNewColorStr() {return sliderClrR.value + ", " + sliderClrG.value + ", " + sliderClrB.value}
+			</script>
+    	</main>
+    
+  	</body>
+</html>

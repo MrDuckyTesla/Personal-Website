@@ -1,35 +1,37 @@
 @charset "UTF-8";
 
 html, body {
-  margin: 0;
-  padding: 0;
-  background: rgb(60, 60, 60);
+  	margin: 0;
+  	padding: 0;
+  	background: rgb(60, 60, 60);
 }
 
 #p5js {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
+  	position: fixed;
+  	inset: 0;
+  	z-index: 0;
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.3);
-  z-index: 1;
-  pointer-events: none;
+  	content: "";
+  	position: fixed;
+  	inset: 0;
+  	background: rgb(255, 255, 255);
+  	opacity: var(--bg-opacity, 0.3);
+ 	z-index: 1;
+ 	pointer-events: none;
 }
 
 main {
-  position: relative;
-  z-index: 1;
+  	position: relative;
+  	z-index: 1;
 }
 
 canvas {
-  display: block;
+  	display: block;
 }
 
 a {
-  margin-right: 15px;
+	margin-left: 15px;
+  	margin-right: 15px;
 }
