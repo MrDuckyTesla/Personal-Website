@@ -1,45 +1,47 @@
-let bg, isMobile;
+let bg, isMobile, canvas;
 
 function setup() {
-  let canvas = createCanvas(windowWidth, windowHeight);
-  canvas.parent("p5js");
-  // noCursor();
-  noSmooth(); noStroke();
-  num = random();
-  isMobile = /android|iphone|/i.test(navigator.userAgent);
+	canvas = createCanvas(windowWidth, windowHeight);
+  	canvas.parent("p5js");
+  	// noCursor();
+  	noSmooth(); noStroke();
+  	num = random();
+  	// isMobile = /android|iphone|/i.test(navigator.userAgent);
   
-  drawingContext.globalCompositeOperation = 'destination-out';
-  fill(60, 60, 60, 5);
-  rect(0, 0, width, height);
-  drawingContext.globalCompositeOperation = 'source-over';
-  
-  // if (isMobile) {
-  //	if (num > 0.5) {bg = new Background1();}
-  //	else {bg = new Background2(canvas);}
-  // }
-  // else {
 	if (num > 0.75) {bg = new SnowFall();}
 	else if (num > 0.5) {bg = new BallBounce(canvas);}
 	else if (num > 0.25) {bg = new SnakeMove();}
 	else if (num > 0) {bg = new ParticalRadial();}
-	// else if (num > 0) {bg = new SnakeRadial(canvas, true);}
-	// else if (num > 0.2) {bg = new Background4();}
-	// else if (num > 0.1) {bg = new Background3();}
-	// else if (num > 0) {bg = new Background5();}
-  // }
+    background(60);
   
   
   
 }
 
 function draw() {
-  // background(60);
-  // circle(mouseX, mouseY, 100);
-  bg.update();
+  	// background(60);
+  	// circle(mouseX, mouseY, 100);
+  	bg.update();
   
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  background(60);
+  	resizeCanvas(windowWidth, windowHeight);
+  	background(60);
+}
+
+function changeSnow() {
+	bg = new SnowFall();
+}
+
+function changeBounce() {
+	bg = new BallBounce(canvas);
+}
+
+function changeSnake() {
+	bg = new SnakeMove();
+}
+
+function changeRadial() {
+	bg = new ParticalRadial();
 }

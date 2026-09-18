@@ -45,7 +45,6 @@ class Snowflake {
   
   // Move and draw snowflakde
   update(avg=300) {
-	
     let dx = this.x - mouseX;
     let dy = this.y - mouseY;
 	
@@ -240,9 +239,10 @@ class ParticalRadial {
 	constructor() {
 		this.particles = [];
 		this.avg = (windowWidth + windowHeight) / 4;
+		this.left = random();
 		for (let i = 0; i < this.avg; i++) {
 		  // Radius gets a random number from 10 to 40 
-		  this.particles.push(new Particle(random(this.avg/10)+10));
+		  this.particles.push(new Particle(random(this.avg/10)+10, this.left > 0.5));
 		}
 	}
 	
@@ -257,7 +257,7 @@ class ParticalRadial {
 }
 
 class Particle  {
-	constructor(r=20) {
+	constructor(r=20, left=false) {
 		this.r = r;
 		this.c = [random(256), random(256), random(256)];
 		  
@@ -279,7 +279,7 @@ class Particle  {
 		this.radY = random(7000);
 
 
-		this.left = false;
+		this.left = left;
 	}
 	
 	update() {
@@ -325,7 +325,6 @@ class SnakeRadial {
 		}
 		if (makeMore) {
 			canvas.mouseClicked(() => this.changePerlin());
-			canvas.style('background-color', 'rgb(60, 60, 60)');
 			for (let i = 0; i < 20; i++) {
 				this.radials.push(new SnakeRadial(canvas, false));
 			}

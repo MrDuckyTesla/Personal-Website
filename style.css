@@ -3,12 +3,22 @@
 html, body {
   margin: 0;
   padding: 0;
+  background: rgb(60, 60, 60);
 }
 
 #p5js {
   position: fixed;
   inset: 0;
   z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+  pointer-events: none;
 }
 
 main {
@@ -18,4 +28,8 @@ main {
 
 canvas {
   display: block;
+}
+
+a {
+  margin-right: 15px;
 }
