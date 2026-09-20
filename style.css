@@ -1,9 +1,16 @@
 @charset "UTF-8";
 
+@font-face {
+	font-family: "tesla";
+	src: url("font.ttf") format("truetype");
+}
+
 html, body {
   	margin: 0;
   	padding: 0;
   	background: rgb(60, 60, 60);
+  	font-family: "tesla", sans-serif;
+  	font-size: 40px;
 }
 
 #p5js {
