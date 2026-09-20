@@ -6,10 +6,10 @@ function setup() {
   	noSmooth(); noStroke();
   	// isMobile = /android|iphone|/i.test(navigator.userAgent);
 	changeSaved();
-	document.documentElement.style.setProperty(
-		"--bg-opacity",
-		getOpacity() / 100
-	);
+	document.documentElement.style.setProperty("--bg-opacity", getOpacity() / 100);
+	document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+	document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+	document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 	// const x = document.getElementById("p5js");
 
 }
@@ -34,8 +34,9 @@ function changeRandom() {
 	else if (num > 0) {bg = new ParticalRadial();}
 } function changeSaved() {
 	if (getBackground() == null) {setBackground("Random");}
-	if (getColor() == null) {setColor("60, 60, 60");}
+	if (getBkgColor() == null) {setBkgColor("60, 60, 60");}
 	if (getOpacity() == null) {setOpacity(30);}
+	if (getOpaColor() == null) {setOpaColor("255, 255, 255");}
 	switch (getBackground()) {
 		case "Off": bg = new Off(); break;
 		case "Bouncy": changeBounce(); break;
@@ -57,15 +58,15 @@ function resetBackground() {
 	changeSaved();
 }
 
-let colorChanged = true;
-function setColor(color) {localStorage.setItem("color", color); colorChanged = true;}
-function getColor() {return localStorage.getItem("color");}
-function resetColor() {
-	setColor("60, 60, 60"); 
-	sliderClrR.value = 60;
-	sliderClrG.value = 60;
-	sliderClrB.value = 60;
-	outputClr.textContent = getNewColorStr();
+let colorBkgChanged = true;
+function setBkgColor(color) {localStorage.setItem("bkgcolor", color); colorBkgChanged = true;}
+function getBkgColor() {return localStorage.getItem("bkgcolor");}
+function resetBkgColor() {
+	setBkgColor("60, 60, 60"); 
+	sliderBkgClrR.value = 60;
+	sliderBkgClrG.value = 60;
+	sliderBkgClrB.value = 60;
+	outputBkgClr.textContent = "Color: "+getNewBkgColorStr();
 }
 
 function setOpacity(opacity) {localStorage.setItem("opacity", opacity);}
@@ -78,4 +79,17 @@ function resetOpacity() {
 		"--bg-opacity",
 		sliderOpa.value / 100
 	);
+}
+
+function setOpaColor(color) {localStorage.setItem("opacolor", color);;}
+function getOpaColor() {return localStorage.getItem("opacolor");}
+function resetOpaColor() {
+	setOpaColor("255, 255, 255"); 
+	sliderOpaClrR.value = 255;
+	sliderOpaClrG.value = 255;
+	sliderOpaClrB.value = 255;
+	document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+	document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+	document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
+	outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
 }

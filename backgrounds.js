@@ -11,7 +11,7 @@ class SnowFall {
 	}
 	
 	update() {
-		background(...getColor().split(", "));
+		background(...getBkgColor().split(", "));
 		// Go through list and update snowflakes
 		for (let i = 0; i < this.snowList.length; i++) {
 		  this.snowList[i].update(this.avg);
@@ -85,7 +85,7 @@ class BallBounce {
 	}
 
 	update() {
-		background(...getColor().split(", "));
+		background(...getBkgColor().split(", "));
 		// Go through list and update balls
 		for (let i = 0; i < this.balls.length; i ++) {
 		  this.balls[i].update();
@@ -200,14 +200,14 @@ class SnakeMove {
 		for (let i = 0; i < 6; i++) {
 		  this.perlin.push(random(0, 9999999));
 		}
-		background(...getColor().split(", "));
+		background(...getBkgColor().split(", "));
 	}
 	
 	update() {
 		
-		if (colorChanged) {
-			background(...getColor().split(", "));
-			colorChanged = false;
+		if (colorBkgChanged) {
+			background(...getBkgColor().split(", "));
+			colorBkgChanged = false;
 		}
 		
 	  let dx, dy, r = noise(this.perlin[0])*(width+height)/16;
@@ -253,7 +253,7 @@ class ParticalRadial {
 	}
 	
 	update() {
-		background(...getColor().split(", "));
+		background(...getBkgColor().split(", "));
 
 		// Go through list and update snowflakes
 		for (let i = 0; i < this.particles.length; i++) {
@@ -392,5 +392,5 @@ class SnakeRadial {
 
 class Off {
 	constructor() {}
-	update() {background(...getColor().split(", "));}
+	update() {background(...getBkgColor().split(", "));}
 }

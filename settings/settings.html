@@ -56,6 +56,28 @@
 						}
 					}
 				</script>
+	      		<span id="clrBVal">Color: 60, 60, 60</span>
+	      		<div><input type="range" id="clrBR" min="0" max="255" value="60"></div>
+	      		<div><input type="range" id="clrBG" min="0" max="255" value="60"></div>
+	      		<div><input type="range" id="clrBB" min="0" max="255" value="60"></div>
+	      		<div><a href="#" onclick="resetBkgColor()">Reset</a></div>
+	      		<script>
+	      			const sliderBkgClrR = document.getElementById("clrBR");
+	      			const sliderBkgClrG = document.getElementById("clrBG");
+	      			const sliderBkgClrB = document.getElementById("clrBB");
+	      			const outputBkgClr = document.getElementById("clrBVal");
+	      			const savedBkgColor = getBkgColor();
+	      			if (savedBkgColor !== null) {
+	      				const [r, g, b] = savedBkgColor.split(", ");
+	      				sliderBkgClrR.value = r; sliderBkgClrG.value = g; sliderBkgClrB.value = b;
+	      			} outputBkgClr.textContent = "Color: "+getNewBkgColorStr();
+					[sliderBkgClrR, sliderBkgClrG, sliderBkgClrB].forEach(slider => {
+	      				slider.addEventListener("input", () => {
+	      					outputBkgClr.textContent = "Color: "+getNewBkgColorStr();
+	      					setBkgColor(getNewBkgColorStr());
+	      				});
+	      			}); function getNewBkgColorStr() {return sliderBkgClrR.value + ", " + sliderBkgClrG.value + ", " + sliderBkgClrB.value}
+				</script>
 	      		<h1>Opacity</h1>
 	      		<input type="range" id="opa" min="0" max="100" value="30">
 	      		<span id="opaVal">70%</span>
@@ -74,28 +96,33 @@
 						setOpacity(sliderOpa.value);
 					}); function getOpacityVal(value) {return (100-Number(value))+"%";}
 				</script>
-	      		<h1>Color</h1>
-	      		<span id="clrVal">60, 60, 60</span>
-	      		<div><input type="range" id="clrR" min="0" max="255" value="60"></div>
-	      		<div><input type="range" id="clrG" min="0" max="255" value="60"></div>
-	      		<div><input type="range" id="clrB" min="0" max="255" value="60"></div>
-	      		<div><a href="#" onclick="resetColor()">Reset</a></div>
+	      		<span id="clrOVal">Color: 255, 255, 255</span>
+	      		<div><input type="range" id="clrOR" min="0" max="255" value="255"></div>
+	      		<div><input type="range" id="clrOG" min="0" max="255" value="255"></div>
+	      		<div><input type="range" id="clrOB" min="0" max="255" value="255"></div>
+	      		<div><a href="#" onclick="resetOpaColor()">Reset</a></div>
 	      		<script>
-	      			const sliderClrR = document.getElementById("clrR");
-	      			const sliderClrG = document.getElementById("clrG");
-	      			const sliderClrB = document.getElementById("clrB");
-	      			const outputClr = document.getElementById("clrVal");
-	      			const savedColor = getColor();
-	      			if (savedColor !== null) {
-	      				const [r, g, b] = savedColor.split(", ");
-	      				sliderClrR.value = r; sliderClrG.value = g; sliderClrB.value = b;
-	      			} outputClr.textContent = sliderClrR.value + ", " + sliderClrG.value + ", " + sliderClrB.value;
-					[sliderClrR, sliderClrG, sliderClrB].forEach(slider => {
+	      			const sliderOpaClrR = document.getElementById("clrOR");
+	      			const sliderOpaClrG = document.getElementById("clrOG");
+	      			const sliderOpaClrB = document.getElementById("clrOB");
+	      			const outputOpaClr = document.getElementById("clrOVal");
+	      			const savedOpaColor = getOpaColor();
+	      			if (savedOpaColor !== null) {
+	      				const [r, g, b] = savedOpaColor.split(", ");
+	      				sliderOpaClrR.value = r; sliderOpaClrG.value = g; sliderOpaClrB.value = b;
+	      				document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+	      				document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+	      				document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
+	      			} outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
+					[sliderOpaClrR, sliderOpaClrG, sliderOpaClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
-	      					outputClr.textContent = getNewColorStr();
-	      					setColor(getNewColorStr());
+	      					outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
+	      					document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+		      				document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+		      				document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
+	      					setOpaColor(getNewOpaColorStr());
 	      				});
-	      			}); function getNewColorStr() {return sliderClrR.value + ", " + sliderClrG.value + ", " + sliderClrB.value}
+	      			}); function getNewOpaColorStr() {return sliderOpaClrR.value + ", " + sliderOpaClrG.value + ", " + sliderOpaClrB.value}
 				</script>
 			</div>
     	</main>
