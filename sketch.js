@@ -7,9 +7,10 @@ function setup() {
   	// isMobile = /android|iphone|/i.test(navigator.userAgent);
 	changeSaved();
 	document.documentElement.style.setProperty("--bg-opacity", getOpacity() / 100);
-	document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
-	document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
-	document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
+	colorSaved = getOpaColor().split(",");
+	document.documentElement.style.setProperty("--bg-rval", Number(colorSaved[0]));
+	document.documentElement.style.setProperty("--bg-gval", Number(colorSaved[1]));
+	document.documentElement.style.setProperty("--bg-bval", Number(colorSaved[2]));
 	// const x = document.getElementById("p5js");
 
 }
