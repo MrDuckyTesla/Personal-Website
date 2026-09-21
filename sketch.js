@@ -20,7 +20,7 @@ let t = new ToolKit();
 
 function draw() {
   	bg.update();
-	t.pixelate(sliderPix.value);
+	t.pixelate(getPixelation());
 }
 
 function windowResized() {
