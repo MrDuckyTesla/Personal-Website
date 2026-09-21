@@ -15,8 +15,12 @@ function setup() {
 
 }
 
+let t = new ToolKit();
+
+
 function draw() {
   	bg.update();
+	t.pixelate(sliderPix.value);
 }
 
 function windowResized() {
@@ -68,6 +72,14 @@ function resetBkgColor() {
 	sliderBkgClrG.value = 60;
 	sliderBkgClrB.value = 60;
 	outputBkgClr.textContent = "Color: "+getNewBkgColorStr();
+}
+
+function setPixelation(pixelation) {localStorage.setItem("pixel", pixelation)}
+function getPixelation() {return localStorage.getItem("pixel");}
+function resetPixelation() {
+	setPixelation(10);
+	sliderPix.value = 10;
+	outputPix.textContent = "Pixelation: "+getPixelation()+"x";
 }
 
 function setOpacity(opacity) {localStorage.setItem("opacity", opacity);}

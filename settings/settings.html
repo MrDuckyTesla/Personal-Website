@@ -5,8 +5,8 @@
     	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>
     	
-    	<script src="../sketch.js"></script>
     	<script src="../toolkit.js"></script>
+    	<script src="../sketch.js"></script>
     	<script src="../backgrounds.js"></script>
     
     	<link rel="stylesheet" type="text/css" href="../style.css">
@@ -55,6 +55,20 @@
 							default: return "-1";
 						}
 					}
+				</script>
+				<span id="pixVal">Pixelation: 10%</span>
+	      		<div><input type="range" id="pix" min="1" max="50" value="10"></div>
+	      		<div><a href="#" onclick="resetPixelation()">Reset</a></div>
+	      		<script>
+	      			const sliderPix = document.getElementById("pix");
+	      			const outputPix = document.getElementById("pixVal");
+	      			const savedPix = getPixelation();
+	      			if (savedPix !== null) {sliderPix.value = savedPix;}
+	      			outputPix.textContent = "Pixelation: "+sliderPix.value+"x";
+	      			sliderPix.addEventListener("input", () => {
+	      				outputPix.textContent = "Pixelation: "+sliderPix.value+"x";
+	      				setPixelation(sliderPix.value);
+	      			});
 				</script>
 	      		<span id="clrBVal">Color: 60, 60, 60</span>
 	      		<div><input type="range" id="clrBR" min="0" max="255" value="60"></div>
