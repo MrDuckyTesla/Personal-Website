@@ -145,49 +145,98 @@
 				</script>
 				<h1>Text</h1>
 				<span id="txtFVal">40px</span>
-				<a href="#" onclick="resetOpaColor()">Reset</a>
+				<a href="#" onclick="resetTextSize()">Reset</a>
 				<div><input type="range" id="txtSize" min="10" max="100" value="40"></div>
-				<!--
 				<script>
-					const sliderTxtP = document.getElementById("pix");
-	      			const outputTxtP = document.getElementById("pixVal");
-	      			const savedTxtP = getPixelation();
-	      			if (savedTxtP !== null) {sliderTxtP.value = savedPix;}
+					const sliderTxtP = document.getElementById("txtSize");
+	      			const outputTxtP = document.getElementById("txtFVal");
+	      			const savedTxtP = getTextSize();
+	      			if (savedTxtP !== null) {sliderTxtP.value = savedTxtP;}
 	      			outputTxtP.textContent = sliderTxtP.value+"px";
-	      			document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+	      			document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      			sliderTxtP.addEventListener("input", () => {
-	      				outputPix.textContent = "Pixelation: "+sliderTxtP.value+"x";
-	      				setPixelation(sliderTxtP.value);
+	      				outputTxtP.textContent = sliderTxtP.value+"px";
+	      				document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
+	      				setTextSize(sliderTxtP.value);
 	      			});
 				</script>
-				-->
 				<div>
 					<span id="txtFCVal">Font Color: 0, 0, 0</span>
-					<a href="#" onclick="resetOpaColor()">Reset</a>
+					<a href="#" onclick="resetTextColor()">Reset</a>
 				</div>
 				<input type="range" id="txtClrR" min="0" max="255" value="0">
 				<input type="range" id="txtClrG" min="0" max="255" value="0">
-				<input type="range" id="txtClrB" min="0" max="255" value="0">
+				<input type="range" id="txtClrB" min="0" max="255" value=0>
 				<script>
-				
+					const sliderTxtClrR = document.getElementById("txtClrR");
+	      			const sliderTxtClrG = document.getElementById("txtClrG");
+	      			const sliderTxtClrB = document.getElementById("txtClrB");
+	      			const outputTxtClr = document.getElementById("txtFCVal");
+	      			const savedTxtColor = getTextColor();
+	      			if (savedTxtColor !== null) {
+	      				const [r, g, b] = savedTxtColor.split(", ");
+	      				sliderTxtClrR.value = r; sliderTxtClrG.value = g; sliderTxtClrB.value = b;
+	      				document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
+	      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
+	      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
+	      			} outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
+					[sliderTxtClrR, sliderTxtClrG, sliderTxtClrB].forEach(slider => {
+	      				slider.addEventListener("input", () => {
+	      					outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
+	      					document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
+		      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
+		      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
+	      					setTextColor(getNewTxtColorStr());
+	      				});
+	      			}); function getNewTxtColorStr() {return sliderTxtClrR.value + ", " + sliderTxtClrG.value + ", " + sliderTxtClrB.value}
 				</script>
 				<div>
 					<span id="txtSVal">Stroke: 1px</span>
-					<a href="#" onclick="resetOpaColor()">Reset</a>
+					<a href="#" onclick="resetStrokeSize()">Reset</a>
 				</div>
+				<input type="range" id="txtStroke" min="0" max="3" value="1">
 				<script>
-				
+					const sliderStrP = document.getElementById("txtStroke");
+	      			const outputStrP = document.getElementById("txtSVal");
+	      			const savedStrP = getStrokeSize();
+	      			if (savedStrP !== null) {sliderStrP.value = savedStrP;}
+	      			outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
+	      			document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
+	      			sliderStrP.addEventListener("input", () => {
+	      				outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
+	      				document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
+	      				setStrokeSize(sliderStrP.value);
+	      			});
 				</script>
-				<input type="range" id="txtSize" min="0" max="10" value="1">
 				<div>
-					<span id="txtFCVal">Stroke Color: 255, 255, 255</span>
-					<a href="#" onclick="resetOpaColor()">Reset</a>
+					<span id="txtSCVal">Stroke Color: 255, 255, 255</span>
+					<a href="#" onclick="resetStrokeColor()">Reset</a>
 				</div>
 				<input type="range" id="txtStrR" min="0" max="255" value="255">
 				<input type="range" id="txtStrG" min="0" max="255" value="255">
-				<input type="range" id="txtSrtB" min="0" max="255" value="255">
+				<input type="range" id="txtStrB" min="0" max="255" value="255">
 				<script>
-				
+					const sliderStrClrR = document.getElementById("txtStrR");
+	      			const sliderStrClrG = document.getElementById("txtStrG");
+	      			const sliderStrClrB = document.getElementById("txtStrB");
+	      			const outputClrStr = document.getElementById("txtSCVal");
+	      			const savedStrColor = getStrokeColor();
+	      			if (savedStrColor !== null) {
+	      				const [r, g, b] = savedStrColor.split(", ");
+	      				sliderStrClrR.value = r; sliderStrClrG.value = g; sliderStrClrB.value = b;
+	      				document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
+	      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
+	      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
+	      			} outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
+					[sliderStrClrR, sliderStrClrG, sliderStrClrB].forEach(slider => {
+	      				slider.addEventListener("input", () => {
+	      					outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
+	      					document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
+		      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
+		      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
+	      					setStrokeColor(getNewStrColorStr());
+	      				});
+	      			}); function getNewStrColorStr() {return sliderStrClrR.value + ", " + sliderStrClrG.value + ", " + sliderStrClrB.value}
 				</script>
 			</div>
     	</main>
