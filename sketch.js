@@ -42,6 +42,7 @@ function changeRandom() {
 	if (getBkgColor() == null) {setBkgColor("60, 60, 60");}
 	if (getOpacity() == null) {setOpacity(30);}
 	if (getOpaColor() == null) {setOpaColor("255, 255, 255");}
+	if (getPixelation() == null) {setPixelation(10);}
 	switch (getBackground()) {
 		case "Off": bg = new Off(); break;
 		case "Bouncy": changeBounce(); break;
