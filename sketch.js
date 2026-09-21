@@ -11,7 +11,10 @@ function setup() {
 	if (getOpaColor() == null) {setOpaColor("255, 255, 255");}
 	if (getPixelation() == null) {setPixelation(10);}
 	if (getTextSize() == null) {setTextSize(40);}
-	if (getTextColor() == null) {getTextColor("0, 0, 0");}
+	if (getTextColor() == null) {setTextColor("0, 0, 0");}
+	if (getStrokeSize() == null) {setStrokeSize(1);}
+	if (getStrokeColor() == null) {setStrokeColor("255, 255, 255");}
+	// Draw background
 	changeSaved();
 	// Opacity value
 	document.documentElement.style.setProperty("--bg-opacity", getOpacity() / 100);
