@@ -25,9 +25,11 @@
       		<a href="../index.html">Home</a>
       		<div class="center-text">
 	      		<h1>Background</h1>
+	      		<div>
+					<span id="bkgVal">Random</span>
+					<a href="#" onclick="resetBackground()">Reset</a>
+				</div>
 				<input type="range" id="bkg" min="0" max="5" value="5">
-				<span id="bkgVal">Random</span>
-				<div><a href="#" onclick="resetBackground()">Reset</a></div>
 				<script>
 					const sliderBkg = document.getElementById("bkg");
 					const outputBkg = document.getElementById("bkgVal");
@@ -56,9 +58,11 @@
 						}
 					}
 				</script>
-				<span id="pixVal">Pixelation: 10%</span>
-	      		<div><input type="range" id="pix" min="1" max="50" value="10"></div>
-	      		<div><a href="#" onclick="resetPixelation()">Reset</a></div>
+	      		<div>
+	      		<span id="pixVal">Pixelation: 10%</span>
+		      		<a href="#" onclick="resetPixelation()">Reset</a>
+	      		</div>
+	      		<input type="range" id="pix" min="1" max="50" value="10">
 	      		<script>
 	      			const sliderPix = document.getElementById("pix");
 	      			const outputPix = document.getElementById("pixVal");
@@ -70,11 +74,13 @@
 	      				setPixelation(sliderPix.value);
 	      			});
 				</script>
-	      		<span id="clrBVal">Color: 60, 60, 60</span>
-	      		<div><input type="range" id="clrBR" min="0" max="255" value="60"></div>
-	      		<div><input type="range" id="clrBG" min="0" max="255" value="60"></div>
-	      		<div><input type="range" id="clrBB" min="0" max="255" value="60"></div>
-	      		<div><a href="#" onclick="resetBkgColor()">Reset</a></div>
+	      		<div>
+	      			<span id="clrBVal">Color: 60, 60, 60</span> 
+	      			<a href="#" onclick="resetBkgColor()">Reset</a>
+	      		</div>
+	      		<input type="range" id="clrBR" min="0" max="255" value="60">
+	      		<input type="range" id="clrBG" min="0" max="255" value="60">
+	      		<input type="range" id="clrBB" min="0" max="255" value="60">
 	      		<script>
 	      			const sliderBkgClrR = document.getElementById("clrBR");
 	      			const sliderBkgClrG = document.getElementById("clrBG");
@@ -93,9 +99,11 @@
 	      			}); function getNewBkgColorStr() {return sliderBkgClrR.value + ", " + sliderBkgClrG.value + ", " + sliderBkgClrB.value}
 				</script>
 	      		<h1>Opacity</h1>
+	      		<div>
+		      		<span id="opaVal">70%</span>
+		      		<a href="#" onclick="resetOpacity()">Reset</a>
+	      		</div>
 	      		<input type="range" id="opa" min="0" max="100" value="30">
-	      		<span id="opaVal">70%</span>
-	      		<div><a href="#" onclick="resetOpacity()">Reset</a></div>
 	      		<script>
 	      			const sliderOpa = document.getElementById("opa");
 	      			const outputOpa = document.getElementById("opaVal");
@@ -110,11 +118,13 @@
 						setOpacity(sliderOpa.value);
 					}); function getOpacityVal(value) {return (100-Number(value))+"%";}
 				</script>
-	      		<span id="clrOVal">Color: 255, 255, 255</span>
-	      		<div><input type="range" id="clrOR" min="0" max="255" value="255"></div>
-	      		<div><input type="range" id="clrOG" min="0" max="255" value="255"></div>
-	      		<div><input type="range" id="clrOB" min="0" max="255" value="255"></div>
-	      		<div><a href="#" onclick="resetOpaColor()">Reset</a></div>
+				<div>
+					<span id="clrOVal">Color: 255, 255, 255</span>
+					<a href="#" onclick="resetOpaColor()">Reset</a>
+				</div>
+	      		<input type="range" id="clrOR" min="0" max="255" value="255">
+	      		<input type="range" id="clrOG" min="0" max="255" value="255">
+	      		<input type="range" id="clrOB" min="0" max="255" value="255">
 	      		<script>
 	      			const sliderOpaClrR = document.getElementById("clrOR");
 	      			const sliderOpaClrG = document.getElementById("clrOG");
@@ -138,6 +148,29 @@
 	      				});
 	      			}); function getNewOpaColorStr() {return sliderOpaClrR.value + ", " + sliderOpaClrG.value + ", " + sliderOpaClrB.value}
 				</script>
+				<h1>Text</h1>
+				<span id="txtFVal">40px</span>
+				<a href="#" onclick="resetOpaColor()">Reset</a>
+				<div><input type="range" id="txtSize" min="10" max="100" value="40"></div>
+				<div>
+					<span id="txtFCVal">Font Color: 0, 0, 0</span>
+					<a href="#" onclick="resetOpaColor()">Reset</a>
+				</div>
+				<input type="range" id="txtSize" min="0" max="255" value="0">
+				<input type="range" id="txtSize" min="0" max="255" value="0">
+				<input type="range" id="txtSize" min="0" max="255" value="0">
+				<div>
+					<span id="txtSVal">Stroke: 1px</span>
+					<a href="#" onclick="resetOpaColor()">Reset</a>
+				</div>
+				<input type="range" id="txtSize" min="0" max="10" value="1">
+				<div>
+					<span id="txtFCVal">Stroke Color: 0, 0, 0</span>
+					<a href="#" onclick="resetOpaColor()">Reset</a>
+				</div>
+				<input type="range" id="txtSize" min="0" max="255" value="0">
+				<input type="range" id="txtSize" min="0" max="255" value="0">
+				<input type="range" id="txtSize" min="0" max="255" value="0">
 			</div>
     	</main>
     

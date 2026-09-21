@@ -10,7 +10,13 @@ html, body {
   	padding: 0;
   	background: rgb(60, 60, 60);
   	font-family: "tesla", sans-serif;
-  	font-size: 40px;
+  	color: rgb(var(--tx-trval, 0), var(--tx-tgval, 0), var(--tx-tbval, 0));
+	text-shadow:
+		var(--tx-sval, 1px) 0 rgb(var(--tx-srval, 255), var(--tx-sgval, 255), var(--tx-sbval, 255)),
+		calc(-1 * var(--tx-sval, 1px)) 0 rgb(var(--tx-srval, 255), var(--tx-sgval, 255), var(--tx-sbval, 255)),
+		0 var(--tx-sval, 1px) rgb(var(--tx-srval, 255), var(--tx-sgval, 255), var(--tx-sbval, 255)),
+		0 calc(-1 * var(--tx-sval, 1px)) rgb(var(--tx-srval, 255), var(--tx-sgval, 255), var(--tx-sbval, 255));
+  	font-size: var(--tx-fval, 40px);
 }
 
 #p5js {
