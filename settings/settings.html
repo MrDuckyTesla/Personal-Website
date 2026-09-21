@@ -147,25 +147,48 @@
 				<span id="txtFVal">40px</span>
 				<a href="#" onclick="resetOpaColor()">Reset</a>
 				<div><input type="range" id="txtSize" min="10" max="100" value="40"></div>
+				<!--
+				<script>
+					const sliderTxtP = document.getElementById("pix");
+	      			const outputTxtP = document.getElementById("pixVal");
+	      			const savedTxtP = getPixelation();
+	      			if (savedTxtP !== null) {sliderTxtP.value = savedPix;}
+	      			outputTxtP.textContent = sliderTxtP.value+"px";
+	      			document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+	      			sliderTxtP.addEventListener("input", () => {
+	      				outputPix.textContent = "Pixelation: "+sliderTxtP.value+"x";
+	      				setPixelation(sliderTxtP.value);
+	      			});
+				</script>
+				-->
 				<div>
 					<span id="txtFCVal">Font Color: 0, 0, 0</span>
 					<a href="#" onclick="resetOpaColor()">Reset</a>
 				</div>
-				<input type="range" id="txtSize" min="0" max="255" value="0">
-				<input type="range" id="txtSize" min="0" max="255" value="0">
-				<input type="range" id="txtSize" min="0" max="255" value="0">
+				<input type="range" id="txtClrR" min="0" max="255" value="0">
+				<input type="range" id="txtClrG" min="0" max="255" value="0">
+				<input type="range" id="txtClrB" min="0" max="255" value="0">
+				<script>
+				
+				</script>
 				<div>
 					<span id="txtSVal">Stroke: 1px</span>
 					<a href="#" onclick="resetOpaColor()">Reset</a>
 				</div>
+				<script>
+				
+				</script>
 				<input type="range" id="txtSize" min="0" max="10" value="1">
 				<div>
-					<span id="txtFCVal">Stroke Color: 0, 0, 0</span>
+					<span id="txtFCVal">Stroke Color: 255, 255, 255</span>
 					<a href="#" onclick="resetOpaColor()">Reset</a>
 				</div>
-				<input type="range" id="txtSize" min="0" max="255" value="0">
-				<input type="range" id="txtSize" min="0" max="255" value="0">
-				<input type="range" id="txtSize" min="0" max="255" value="0">
+				<input type="range" id="txtStrR" min="0" max="255" value="255">
+				<input type="range" id="txtStrG" min="0" max="255" value="255">
+				<input type="range" id="txtSrtB" min="0" max="255" value="255">
+				<script>
+				
+				</script>
 			</div>
     	</main>
     

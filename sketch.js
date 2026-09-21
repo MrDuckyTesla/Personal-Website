@@ -107,3 +107,11 @@ function resetOpaColor() {
 	document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 	outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
 }
+
+function setTextSize(size) {localStorage.setItem("textsize", size)}
+function getTextSize() {return localStorage.getItem("textsize");}
+function resetTextSize() {
+	setTextSize(40);
+	sliderPix.value = 40;
+	outputPix.textContent = "Pixelation: "+getPixelation()+"x";
+}
