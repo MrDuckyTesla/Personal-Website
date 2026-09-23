@@ -47,6 +47,7 @@ let t = new ToolKit();
 function draw() {
   	bg.update();
 	if (getPixelation() != 1) {t.pixelate(getPixelation());}
+	document.documentElement.style.setProperty("--tx-wid", windowWidth/3+"px");
 }
 
 function windowResized() {

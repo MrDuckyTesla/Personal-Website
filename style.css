@@ -51,4 +51,6 @@ a {
 
 .center-text {
     text-align: center;
+    width: var(--tx-wid, 600px);
+    margin: 0 auto;
 }
