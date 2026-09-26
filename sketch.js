@@ -40,8 +40,8 @@ function setup() {
 	// const x = document.getElementById("p5js");
 	window.colorBkgChanged = true;
 	
-	addWindow('windows/main/websiteinfo/index.html', windowWidth/6, windowHeight/5, 'website_info.txt', windowWidth/3, windowHeight/1.4);
-	addWindow('windows/main/image/index.html', windowWidth/1.7, windowHeight/5, 'website_icon.png', min(windowWidth/5, 340), min(windowHeight/2.5, 370));
+	addWindow('main/websiteinfo/index.html', windowWidth/6, windowHeight/5, 'website_info.txt', windowWidth/3, windowHeight/1.4);
+	addWindow('main/image/index.html', windowWidth/1.7, windowHeight/5, 'website_icon.png', min(windowWidth/5, 340), min(windowHeight/2.5, 370));
 	
 	document.addEventListener("pointerdown", (e) => {
 		const titleBar = e.target.closest(".title-bar");
