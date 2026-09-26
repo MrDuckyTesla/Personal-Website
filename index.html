@@ -26,11 +26,22 @@
     		8: shout outs
     		9: windows
     		-->
-    		<a href="forums/index.html">Forums</a>
-    		<a href="playground/index.html">Playground</a>
-    		<a href="settings/index.html">Settings</a>
-    		<a href="info/index.html">Info</a>
-    		<a href="adverts/index.html">Adverts</a>
+    		
+    		<!-- 
+    		<a href="windows/forums/index.html">Forums</a>
+    		<a href="windows/playground/index.html">Playground</a>
+    		<a href="windows/settings/index.html">Settings</a>
+    		<a href="windows/info/index.html">Info</a>
+    		<a href="windows/adverts/index.html">Adverts</a>
+    		-->
+    		
+    		<a href="#" onclick="windows.push(addWindow('windows/forums/index.html', 200, 200, 'forums.exe', 800, 600)); return false;">Forums</a>
+    		<a href="#" onclick="windows.push(addWindow('windows/friends/index.html', 200, 200, 'infinite_choices.html', 800, 600)); return false;">Browser</a>
+			<!-- <a href="#" onclick="windows.push(addWindow('windows/playground/index.html', 200, 200, 800, 600)); return false;">Playground</a> -->
+			<a href="#" onclick="windows.push(addWindow('windows/settings/index.html', 200, 200, 'settings.exe', 800, 600)); return false;">Settings</a>
+			<a href="#" onclick="windows.push(addWindow('windows/info/index.html', 200, 200, 'personal_info.txt', 800, 600)); return false;">Info</a>
+			<a href="#" onclick="windows.push(addWindow('windows/adverts/index.html', 200, 200, 'virus.exe', 800, 600)); return false;">Adverts</a>
+      		<!-- 
       		<h1 class="center-text">Hello, I am Nico Lamas (aka MrDuckyTesla), welcome to my personal website!</h1>
       		<h2 class="center-text">
       			Feel free to mess around and take a look at all the available pages. Reloading the page will give you a random background, 
@@ -38,10 +49,15 @@
       			its javascript usage, while also being completely dependency free (besides my one true love p5.js, best library ever <3). 
       			This websites frontend is also completely open source and available on my github. 
       		</h2>
+      		-->
     	</main>
     	<script src="toolkit.js"></script>
+    	<script src="functions.js"></script>
 		<script src="sketch.js"></script>
     	<script src="backgrounds.js"></script>
+    	
+    	
+    	<div id="iframes"></div>
     
   	</body>
 </html>

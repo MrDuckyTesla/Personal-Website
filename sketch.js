@@ -1,4 +1,4 @@
-let bg, isMobile, canvas;
+let bg, isMobile, canvas, windows = [], draggingWindow, offsetX, offsetY;
 
 function setup() {
 	canvas = createCanvas(windowWidth, windowHeight);
@@ -38,6 +38,34 @@ function setup() {
 	document.documentElement.style.setProperty("--tx-sgval", Number(colorSaved[1]));
 	document.documentElement.style.setProperty("--tx-sbval", Number(colorSaved[2]));
 	// const x = document.getElementById("p5js");
+	window.colorBkgChanged = true;
+	
+	windows.push(addWindow('windows/main/websiteinfo/index.html', 200, 200, 'website_info.txt', 800, 600));
+	
+	document.addEventListener("mousedown", (e) => {
+		const titleBar = e.target.closest(".title-bar");
+		if (titleBar != null) {
+			draggingWindow = titleBar.parentElement;
+			offsetX = e.clientX - draggingWindow.offsetLeft;
+			offsetY = e.clientY - draggingWindow.offsetTop;
+			draggingWindow.querySelector("iframe").style.pointerEvents = "none";
+		}
+	})
+	
+	document.addEventListener("mousemove", (e) => {
+	    if (draggingWindow != null) {
+			draggingWindow.style.left = Math.max(0, Math.min(e.clientX - offsetX, window.innerWidth - draggingWindow.offsetWidth)) + "px";
+			draggingWindow.style.top = Math.max(0, Math.min(e.clientY - offsetY, window.innerHeight - draggingWindow.offsetHeight)) + "px";
+		}
+	});
+
+	window.addEventListener("mouseup", () => {
+		if (draggingWindow != null){
+			draggingWindow.querySelector("iframe").style.pointerEvents = "auto";	
+	    	draggingWindow = null;
+		}
+	});
+	
 
 }
 
@@ -76,100 +104,61 @@ function changeRandom() {
 	}
 }
 
-
-function setBackground(background) {localStorage.setItem("background", background);}
-function getBackground() {return localStorage.getItem("background");}
-function resetBackground() {
-	setBackground("Random");
-	sliderBkg.value = 5;
-	outputBkg.textContent = "Random";
-	changeSaved();
-}
-
-let colorBkgChanged = true;
-function setBkgColor(color) {localStorage.setItem("bkgcolor", color); colorBkgChanged = true;}
-function getBkgColor() {return localStorage.getItem("bkgcolor");}
-function resetBkgColor() {
-	setBkgColor("60, 60, 60"); 
-	sliderBkgClrR.value = 60;
-	sliderBkgClrG.value = 60;
-	sliderBkgClrB.value = 60;
-	outputBkgClr.textContent = "Color: "+getNewBkgColorStr();
-}
-
-function setPixelation(pixelation) {localStorage.setItem("pixel", pixelation)}
-function getPixelation() {return localStorage.getItem("pixel");}
-function resetPixelation() {
-	setPixelation(10);
-	sliderPix.value = 10;
-	outputPix.textContent = "Pixelation: "+getPixelation()+"x";
-}
-
-function setOpacity(opacity) {localStorage.setItem("opacity", opacity);}
-function getOpacity() {return localStorage.getItem("opacity");}
-function resetOpacity() {
-	setOpacity(30);
-	sliderOpa.value = 30;
-	outputOpa.textContent = getOpacityVal(sliderOpa.value);
-	document.documentElement.style.setProperty(
-		"--bg-opacity",
-		sliderOpa.value / 100
-	);
-}
-
-function setOpaColor(color) {localStorage.setItem("opacolor", color);;}
-function getOpaColor() {return localStorage.getItem("opacolor");}
-function resetOpaColor() {
-	setOpaColor("255, 255, 255"); 
-	sliderOpaClrR.value = 255;
-	sliderOpaClrG.value = 255;
-	sliderOpaClrB.value = 255;
-	document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
-	document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
-	document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
-	outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
-}
-
-function setTextSize(size) {localStorage.setItem("textsize", size)}
-function getTextSize() {return localStorage.getItem("textsize");}
-function resetTextSize() {
-	setTextSize(40);
-	sliderPix.value = 40;
-	document.documentElement.style.setProperty("--tx-fval", getTextSize()+"px");
-	outputTxtP.textContent = sliderPix.value+"px";
-}
-
-function setTextColor(color) {localStorage.setItem("txtcolor", color);;}
-function getTextColor() {return localStorage.getItem("txtcolor");}
-function resetTextColor() {
-	setTextColor("0, 0, 0"); 
-	sliderTxtClrR.value = 0;
-	sliderTxtClrG.value = 0;
-	sliderTxtClrB.value = 0
-	document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
-	document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
-	document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
-	outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
-}
-
-function setStrokeSize(size) {localStorage.setItem("strokesize", size)}
-function getStrokeSize() {return localStorage.getItem("strokesize");}
-function resetStrokeSize() {
-	setStrokeSize(1);
-	sliderStrP.value = 1;
-	document.documentElement.style.setProperty("--tx-sval", getStrokeSize()+"px");
-	outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
-}
-
-function setStrokeColor(color) {localStorage.setItem("strcolor", color);;}
-function getStrokeColor() {return localStorage.getItem("strcolor");}
-function resetStrokeColor() {
-	setStrokeColor("255, 255, 255"); 
-	sliderStrClrR.value = 255;
-	sliderStrClrG.value = 255;
-	sliderStrClrB.value = 255
-	document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
-	document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
-	document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
-	outputClrStr.textContent = "Color: "+getNewStrColorStr();
+function addWindow(url, x, y, text, w=800, h=800) {
+	const windowElement = document.createElement("div");
+	const titleBar = document.createElement("div");
+	const iframe = document.createElement("iframe");
+	const closeButton = document.createElement("button");
+	
+	windowElement.style.position = "absolute";
+	windowElement.style.left = x + "px";
+	windowElement.style.top = y + "px";
+	windowElement.style.width = w + "px";
+	windowElement.style.height = h + "px";
+	windowElement.style.border = "1px solid #ccc";
+	windowElement.style.borderRadius = "10px";
+	windowElement.style.overflow = "hidden";
+	windowElement.style.zIndex = "2";
+	windowElement.style.boxSizing = "border-box";
+	windowElement.style.resize = "both";
+	
+	titleBar.style.height = "30px";
+	titleBar.style.background = "#222";
+	titleBar.style.cursor = "move";
+	titleBar.classList.add("title-bar");
+	titleBar.textContent = text;
+	titleBar.style.lineHeight = "30px";
+	titleBar.style.textIndent = "10px";
+	
+	iframe.src = url; 
+	iframe.style.position = "absolute";
+	iframe.style.left = "0";
+	iframe.style.top = "30px";
+	iframe.style.width = "100%";
+	iframe.style.height = "calc(100% - 30px)";
+	iframe.style.border = "none";
+	
+	closeButton.textContent = "×";
+	closeButton.style.position = "absolute";
+	closeButton.style.right = "0";
+	closeButton.style.top = "0";
+	closeButton.style.height = "30px";
+	closeButton.style.width = "30px";
+	closeButton.style.border = "none";
+	closeButton.style.background = "transparent";
+	closeButton.style.color = "white";
+	closeButton.style.fontSize = "20px";
+	closeButton.style.cursor = "pointer";
+	
+	titleBar.appendChild(closeButton);
+	windowElement.appendChild(titleBar);
+	windowElement.appendChild(iframe);
+	
+	document.getElementById("iframes").appendChild(windowElement);
+	
+	closeButton.addEventListener("click", () => {
+	    windowElement.remove();
+	});
+	
+	return windowElement;
 }
