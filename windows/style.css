@@ -29,7 +29,7 @@ body::before {
   	position: fixed;
   	inset: 0;
   	background: rgb(var(--bg-rval, 255), var(--bg-gval, 255), var(--bg-bval, 255));
-  	opacity: 0.1;
+  	opacity: var(--bg-opacity, 0.3);
  	z-index: 0;
  	pointer-events: none;
 }
