@@ -36,7 +36,7 @@
 			parent.document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
     	}
 
-    	function setOpaColor(color) {localStorage.setItem("opacolor", color);;}
+    	function setOpaColor(color) {localStorage.setItem("opacolor", color);}
     	function getOpaColor() {return localStorage.getItem("opacolor");}
     	function resetOpaColor() {
     		setOpaColor("255, 255, 255"); 
@@ -52,17 +52,17 @@
     		outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
     	}
 
-    	function setTextSize(size) {localStorage.setItem("textsize", size)}
+    	function setTextSize(size) {localStorage.setItem("textsize", size);}
     	function getTextSize() {return localStorage.getItem("textsize");}
     	function resetTextSize() {
     		setTextSize(40);
-    		sliderPix.value = 40;
+    		sliderTxtP.value = 40;
     		document.documentElement.style.setProperty("--tx-fval", getTextSize()+"px");
 			parent.document.documentElement.style.setProperty("--tx-fval", getTextSize()+"px");
     		outputTxtP.textContent = sliderPix.value+"px";
     	}
 
-    	function setTextColor(color) {localStorage.setItem("txtcolor", color);;}
+    	function setTextColor(color) {localStorage.setItem("txtcolor", color);}
     	function getTextColor() {return localStorage.getItem("txtcolor");}
     	function resetTextColor() {
     		setTextColor("0, 0, 0"); 

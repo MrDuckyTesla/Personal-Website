@@ -1,4 +1,4 @@
-let bg, isMobile, canvas, windows = [], draggingWindow, offsetX, offsetY;
+let bg, isMobile, canvas, draggingWindow, offsetX, offsetY;
 
 function setup() {
 	canvas = createCanvas(windowWidth, windowHeight);
@@ -40,7 +40,7 @@ function setup() {
 	// const x = document.getElementById("p5js");
 	window.colorBkgChanged = true;
 	
-	windows.push(addWindow('windows/main/websiteinfo/index.html', 200, 200, 'website_info.txt', 800, 600));
+	addWindow('windows/main/websiteinfo/index.html', 200, 200, 'website_info.txt', 800, 600);
 	
 	document.addEventListener("pointerdown", (e) => {
 		const titleBar = e.target.closest(".title-bar");
@@ -125,6 +125,7 @@ function addWindow(url, x, y, text, w=800, h=800) {
 	titleBar.style.height = "30px";
 	titleBar.style.background = "#222";
 	titleBar.style.cursor = "move";
+	titleBar.style.touchAction = "none";
 	titleBar.classList.add("title-bar");
 	titleBar.textContent = text;
 	titleBar.style.lineHeight = "30px";

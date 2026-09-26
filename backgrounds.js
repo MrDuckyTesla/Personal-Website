@@ -209,7 +209,6 @@ class SnakeMove {
 	}
 	
 	update() {
-		console.log(colorBkgChanged)
 		if (colorBkgChanged) {
 			background(...getBkgColor().split(", "));
 			colorBkgChanged = false;
