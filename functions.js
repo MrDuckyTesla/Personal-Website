@@ -59,7 +59,7 @@
     		sliderTxtP.value = 40;
     		document.documentElement.style.setProperty("--tx-fval", getTextSize()+"px");
 			parent.document.documentElement.style.setProperty("--tx-fval", getTextSize()+"px");
-    		outputTxtP.textContent = sliderPix.value+"px";
+    		outputTxtP.textContent = sliderTxtP.value+"px";
     	}
 
     	function setTextColor(color) {localStorage.setItem("txtcolor", color);}

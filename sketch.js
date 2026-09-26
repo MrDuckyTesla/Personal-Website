@@ -1,4 +1,4 @@
-let bg, isMobile, canvas, draggingWindow, offsetX, offsetY;
+let bg, isMobile, canvas, draggingWindow, offsetX, offsetY, spawnX = 0, spawnY = 0;
 
 function setup() {
 	canvas = createCanvas(windowWidth, windowHeight);
@@ -132,6 +132,7 @@ function addWindow(url, x, y, text, w=800, h=800) {
 	titleBar.textContent = text;
 	titleBar.style.lineHeight = "30px";
 	titleBar.style.textIndent = "10px";
+	titleBar.style.fontSize = "revert";
 	
 	iframe.src = url; 
 	iframe.style.position = "absolute";
