@@ -79,11 +79,6 @@ class BallBounce {
 	  	// Create a list to store all balls
       	this.balls = [];
       	// canvas.mouseClicked(() => this.toggleForce());
-		document.addEventListener("click", (e) => {
-			if (!e.target.closest("a, button, input, select, textarea")) {
-				this.toggleForce();
-			}
-		}, true);
 		for (let i = 0; i < 100; i ++) {
 		  this.balls.push(new Ball(random(width), random(height/2), random(-10, 10), 0, random(50, 100), [random(256), random(256), random(256)]));
 		}

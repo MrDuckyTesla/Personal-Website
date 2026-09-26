@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-  		<title>MrDuckyTesla.com</title>
+  		<title>Home Page</title>
   		<meta name="description" content="Personal website belonging to MrDuckyTesla (aka Nico Lamas)">
     	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
-    	<!--<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>-->
+    	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>
     
     	<link rel="stylesheet" type="text/css" href="style.css">
     	<link rel="icon" type="image/x-icon" href="icon.ico">
@@ -26,22 +26,11 @@
     		8: shout outs
     		9: windows
     		-->
-    		
-    		<!-- 
-    		<a href="windows/forums/index.html">Forums</a>
-    		<a href="windows/playground/index.html">Playground</a>
-    		<a href="windows/settings/index.html">Settings</a>
-    		<a href="windows/info/index.html">Info</a>
-    		<a href="windows/adverts/index.html">Adverts</a>
-    		-->
-    		
-    		<a href="#" onclick="addWindow('windows/forums/index.html', 200+(spawnX+=5), 200+(spawnY+=5), 'forums.html');">Forums</a>
-    		<a href="#" onclick="addWindow('windows/friends/index.html', 200+(spawnX+=5), 200+(spawnY+=5), 'browser.html');">Browser</a>
-			<!-- <a href="#" onclick="windows.push(addWindow('windows/playground/index.html', 200, 200, 800, 600)); return false;">Playground</a> -->
-			<a href="#" onclick="addWindow('windows/settings/index.html', 200+(spawnX+=5), 200+(spawnY+=5), 'settings.html');">Settings</a>
-			<a href="#" onclick="addWindow('windows/info/index.html', 200+(spawnX+=5), 200+(spawnY+=5), 'personal_info.txt');">Info</a>
-			<a href="#" onclick="addWindow('windows/adverts/index.html', 200+(spawnX+=5), 200+(spawnY+=5), 'adverts.html');">Adverts</a>
-      		<!-- 
+    		<a href="forums/index.html">Forums</a>
+    		<a href="playground/index.html">Playground</a>
+    		<a href="settings/index.html">Settings</a>
+    		<a href="info/index.html">Info</a>
+    		<a href="adverts/index.html">Adverts</a>
       		<h1 class="center-text">Hello, I am Nico Lamas (aka MrDuckyTesla), welcome to my personal website!</h1>
       		<h2 class="center-text">
       			Feel free to mess around and take a look at all the available pages. Reloading the page will give you a random background, 
@@ -49,15 +38,10 @@
       			its javascript usage, while also being completely dependency free (besides my one true love p5.js, best library ever <3). 
       			This websites frontend is also completely open source and available on my github. 
       		</h2>
-      		-->
     	</main>
     	<script src="toolkit.js"></script>
-    	<script src="functions.js"></script>
 		<script src="sketch.js"></script>
     	<script src="backgrounds.js"></script>
-    	
-    	
-    	<div id="iframes"></div>
     
   	</body>
 </html>

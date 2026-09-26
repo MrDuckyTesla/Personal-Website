@@ -2,30 +2,27 @@
 <html lang="en">
 	<head>
   		<title>Settings</title>
-  		
-    	<!--<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>
     	
-    	<script src="../../toolkit.js"></script>-->
-    	<script src="../../functions.js"></script>
-    	<!--<script src="../../backgrounds.js"></script>-->
+    	<script src="../toolkit.js"></script>
+    	<script src="../sketch.js"></script>
+    	<script src="../backgrounds.js"></script>
     
     	<link rel="stylesheet" type="text/css" href="../style.css">
-    	<link rel="icon" type="image/x-icon" href="../../icon.ico">
+    	<link rel="icon" type="image/x-icon" href="../icon.ico">
     	<meta charset="utf-8" />
 
   	</head>
     	<body>
     	<div id="p5js"></div>
     	<main>
-    		<!-- 
-      		<a href="../../index.html">Home</a>
-      		-->
+      		<a href="../index.html">Home</a>
       		<div class="center-text">
 	      		<h1>Background</h1>
 	      		<div>
 					<span id="bkgVal">Random</span>
-					<a href="javascript:void(0)" onclick="resetBackground()">Reset</a>
+					<a href="#" onclick="resetBackground()">Reset</a>
 				</div>
 				<input type="range" id="bkg" min="0" max="5" value="5">
 				<script>
@@ -37,7 +34,7 @@
 					sliderBkg.addEventListener("input", function () {
 						let bkg = getBackgroundVal(sliderBkg.value);
 						outputBkg.textContent = bkg;
-						setBackground(bkg); parent.changeSaved();
+						setBackground(bkg); changeSaved();
 					}); function getBackgroundVal(value) {
 						switch (value) {
 							case "0": return "Off";
@@ -58,7 +55,7 @@
 				</script>
 	      		<div>
 	      		<span id="pixVal">Pixelation: 10%</span>
-		      		<a href="javascript:void(0)" onclick="resetPixelation()">Reset</a>
+		      		<a href="#" onclick="resetPixelation()">Reset</a>
 	      		</div>
 	      		<input type="range" id="pix" min="1" max="50" value="10">
 	      		<script>
@@ -74,7 +71,7 @@
 				</script>
 	      		<div>
 	      			<span id="clrBVal">Color: 60, 60, 60</span> 
-	      			<a href="javascript:void(0)" onclick="resetBkgColor()">Reset</a>
+	      			<a href="#" onclick="resetBkgColor()">Reset</a>
 	      		</div>
 	      		<input type="range" id="clrBR" min="0" max="255" value="60">
 	      		<input type="range" id="clrBG" min="0" max="255" value="60">
@@ -92,7 +89,6 @@
 					[sliderBkgClrR, sliderBkgClrG, sliderBkgClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputBkgClr.textContent = "Color: "+getNewBkgColorStr();
-	      					parent.setBkgColor(getNewBkgColorStr());
 	      					setBkgColor(getNewBkgColorStr());
 	      				});
 	      			}); function getNewBkgColorStr() {return sliderBkgClrR.value + ", " + sliderBkgClrG.value + ", " + sliderBkgClrB.value}
@@ -100,7 +96,7 @@
 	      		<h1>Opacity</h1>
 	      		<div>
 		      		<span id="opaVal">70%</span>
-		      		<a href="javascript:void(0)" onclick="resetOpacity()">Reset</a>
+		      		<a href="#" onclick="resetOpacity()">Reset</a>
 	      		</div>
 	      		<input type="range" id="opa" min="0" max="100" value="30">
 	      		<script>
@@ -108,20 +104,18 @@
 	      			const outputOpa = document.getElementById("opaVal");
 	      			const savedOpacity = getOpacity();
 	      			if (savedOpacity !== null) {sliderOpa.value = savedOpacity;}
-	      			parent.document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 	      			document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 	      			outputOpa.textContent = getOpacityVal(sliderOpa.value);
 					sliderOpa.addEventListener("input", function () {
 						let opa = getOpacityVal(sliderOpa.value);
 						outputOpa.textContent = opa;
-						parent.document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 						document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 						setOpacity(sliderOpa.value);
 					}); function getOpacityVal(value) {return (100-Number(value))+"%";}
 				</script>
 				<div>
 					<span id="clrOVal">Color: 255, 255, 255</span>
-					<a href="javascript:void(0)" onclick="resetOpaColor()">Reset</a>
+					<a href="#" onclick="resetOpaColor()">Reset</a>
 				</div>
 	      		<input type="range" id="clrOR" min="0" max="255" value="255">
 	      		<input type="range" id="clrOG" min="0" max="255" value="255">
@@ -135,23 +129,23 @@
 	      			if (savedOpaColor !== null) {
 	      				const [r, g, b] = savedOpaColor.split(", ");
 	      				sliderOpaClrR.value = r; sliderOpaClrG.value = g; sliderOpaClrB.value = b;
-	      				parent.document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
-	      				parent.document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
-	      				parent.document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
+	      				document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+	      				document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+	      				document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 	      			} outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
 					[sliderOpaClrR, sliderOpaClrG, sliderOpaClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
-	      					parent.document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
-	      					parent.document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
-	      					parent.document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
+	      					document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+		      				document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+		      				document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 	      					setOpaColor(getNewOpaColorStr());
 	      				});
 	      			}); function getNewOpaColorStr() {return sliderOpaClrR.value + ", " + sliderOpaClrG.value + ", " + sliderOpaClrB.value}
 				</script>
 				<h1>Text</h1>
 				<span id="txtFVal">40px</span>
-				<a href="javascript:void(0)" onclick="resetTextSize()">Reset</a>
+				<a href="#" onclick="resetTextSize()">Reset</a>
 				<div><input type="range" id="txtSize" min="10" max="100" value="40"></div>
 				<script>
 					const sliderTxtP = document.getElementById("txtSize");
@@ -159,16 +153,16 @@
 	      			const savedTxtP = getTextSize();
 	      			if (savedTxtP !== null) {sliderTxtP.value = savedTxtP;}
 	      			outputTxtP.textContent = sliderTxtP.value+"px";
-	      			parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
+	      			document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      			sliderTxtP.addEventListener("input", () => {
 	      				outputTxtP.textContent = sliderTxtP.value+"px";
-	      				parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
+	      				document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      				setTextSize(sliderTxtP.value);
 	      			});
 				</script>
 				<div>
 					<span id="txtFCVal">Font Color: 0, 0, 0</span>
-					<a href="javascript:void(0)" onclick="resetTextColor()">Reset</a>
+					<a href="#" onclick="resetTextColor()">Reset</a>
 				</div>
 				<input type="range" id="txtClrR" min="0" max="255" value="0">
 				<input type="range" id="txtClrG" min="0" max="255" value="0">
@@ -182,23 +176,23 @@
 	      			if (savedTxtColor !== null) {
 	      				const [r, g, b] = savedTxtColor.split(", ");
 	      				sliderTxtClrR.value = r; sliderTxtClrG.value = g; sliderTxtClrB.value = b;
-	      				parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
-	      				parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
-	      				parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
+	      				document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
+	      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
+	      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
 	      			} outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
 					[sliderTxtClrR, sliderTxtClrG, sliderTxtClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
-	      					parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
-	      					parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
-	      					parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
+	      					document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
+		      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
+		      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
 	      					setTextColor(getNewTxtColorStr());
 	      				});
 	      			}); function getNewTxtColorStr() {return sliderTxtClrR.value + ", " + sliderTxtClrG.value + ", " + sliderTxtClrB.value}
 				</script>
 				<div>
 					<span id="txtSVal">Stroke: 1px</span>
-					<a href="javascript:void(0)" onclick="resetStrokeSize()">Reset</a>
+					<a href="#" onclick="resetStrokeSize()">Reset</a>
 				</div>
 				<input type="range" id="txtStroke" min="0" max="3" value="1">
 				<script>
@@ -207,16 +201,16 @@
 	      			const savedStrP = getStrokeSize();
 	      			if (savedStrP !== null) {sliderStrP.value = savedStrP;}
 	      			outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
-	      			parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
+	      			document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      			sliderStrP.addEventListener("input", () => {
 	      				outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
-	      				parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
+	      				document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      				setStrokeSize(sliderStrP.value);
 	      			});
 				</script>
 				<div>
 					<span id="txtSCVal">Stroke Color: 255, 255, 255</span>
-					<a href="javascript:void(0)" onclick="resetStrokeColor()">Reset</a>
+					<a href="#" onclick="resetStrokeColor()">Reset</a>
 				</div>
 				<input type="range" id="txtStrR" min="0" max="255" value="255">
 				<input type="range" id="txtStrG" min="0" max="255" value="255">
@@ -230,16 +224,16 @@
 	      			if (savedStrColor !== null) {
 	      				const [r, g, b] = savedStrColor.split(", ");
 	      				sliderStrClrR.value = r; sliderStrClrG.value = g; sliderStrClrB.value = b;
-	      				parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
-	      				parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
-	      				parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
+	      				document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
+	      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
+	      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
 	      			} outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
 					[sliderStrClrR, sliderStrClrG, sliderStrClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
-	      					parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
-	      					parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
-	      					parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
+	      					document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
+		      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
+		      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
 	      					setStrokeColor(getNewStrColorStr());
 	      				});
 	      			}); function getNewStrColorStr() {return sliderStrClrR.value + ", " + sliderStrClrG.value + ", " + sliderStrClrB.value}
