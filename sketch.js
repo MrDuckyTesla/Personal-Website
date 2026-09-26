@@ -81,6 +81,9 @@ function draw() {
   	bg.update();
 	if (getPixelation() != 1) {t.pixelate(getPixelation());}
 	document.documentElement.style.setProperty("--tx-wid", windowWidth/2+"px");
+	if (spawnX >= 300 || spawnY >= 300) {
+		spawnX = 0; spawnY = 0;
+	}
 }
 
 function windowResized() {
