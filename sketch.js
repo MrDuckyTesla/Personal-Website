@@ -42,7 +42,7 @@ function setup() {
 	
 	windows.push(addWindow('windows/main/websiteinfo/index.html', 200, 200, 'website_info.txt', 800, 600));
 	
-	document.addEventListener("mousedown", (e) => {
+	document.addEventListener("pointerdown", (e) => {
 		const titleBar = e.target.closest(".title-bar");
 		if (titleBar != null) {
 			draggingWindow = titleBar.parentElement;
@@ -52,14 +52,14 @@ function setup() {
 		}
 	})
 	
-	document.addEventListener("mousemove", (e) => {
+	document.addEventListener("pointermove", (e) => {
 	    if (draggingWindow != null) {
 			draggingWindow.style.left = Math.max(0, Math.min(e.clientX - offsetX, window.innerWidth - draggingWindow.offsetWidth)) + "px";
 			draggingWindow.style.top = Math.max(0, Math.min(e.clientY - offsetY, window.innerHeight - draggingWindow.offsetHeight)) + "px";
 		}
 	});
 
-	window.addEventListener("mouseup", () => {
+	window.addEventListener("pointerup", () => {
 		if (draggingWindow != null){
 			draggingWindow.querySelector("iframe").style.pointerEvents = "auto";	
 	    	draggingWindow = null;
