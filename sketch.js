@@ -1,4 +1,4 @@
-let bg, isMobile, canvas, draggingWindow, offsetX, offsetY, spawnX = 0, spawnY = 0;
+let bg, isMobile, canvas, draggingWindow, offsetX, offsetY, spawnX = 0, spawnY = 0, highestZ = 2;
 
 function setup() {
 	canvas = createCanvas(windowWidth, windowHeight);
@@ -40,7 +40,8 @@ function setup() {
 	// const x = document.getElementById("p5js");
 	window.colorBkgChanged = true;
 	
-	addWindow('windows/main/websiteinfo/index.html', 200, 200, 'website_info.txt', 800, 600);
+	addWindow('windows/main/websiteinfo/index.html', windowWidth/6, windowHeight/5, 'website_info.txt', windowWidth/3, windowHeight/1.4);
+	addWindow('windows/main/image/index.html', windowWidth/1.7, windowHeight/5, 'website_icon.png', min(windowWidth/5, 340), min(windowHeight/2.5, 370));
 	
 	document.addEventListener("pointerdown", (e) => {
 		const titleBar = e.target.closest(".title-bar");
@@ -50,7 +51,9 @@ function setup() {
 			offsetY = e.clientY - draggingWindow.offsetTop;
 			draggingWindow.querySelector("iframe").style.pointerEvents = "none";
 			document.body.style.userSelect = "none";
-		}
+			highestZ++;
+			draggingWindow.style.zIndex = highestZ;
+		} 
 	})
 	
 	document.addEventListener("pointermove", (e) => {
@@ -106,7 +109,7 @@ function changeRandom() {
 	}
 }
 
-function addWindow(url, x, y, text, w=800, h=800) {
+function addWindow(url, x, y, text, w=windowWidth/3, h=windowHeight/2) {
 	const windowElement = document.createElement("div");
 	const titleBar = document.createElement("div");
 	const iframe = document.createElement("iframe");
@@ -120,7 +123,7 @@ function addWindow(url, x, y, text, w=800, h=800) {
 	windowElement.style.border = "1px solid #ccc";
 	windowElement.style.borderRadius = "10px";
 	windowElement.style.overflow = "hidden";
-	windowElement.style.zIndex = "2";
+	windowElement.style.zIndex = highestZ;
 	windowElement.style.boxSizing = "border-box";
 	windowElement.style.resize = "both";
 	
