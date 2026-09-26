@@ -72,7 +72,7 @@ function setup() {
 	});
 	
 	document.addEventListener("click", (e) => {
-		if (bg instanceof BallBounce &&!e.target.closest("a, button, input, select, textarea")) {
+		if (bg instanceof BallBounce &&!e.target.closest("a, button, input, select, textarea, #iframes")) {
 			bg.toggleForce();
 		}
 	}, true);
@@ -170,7 +170,9 @@ function addWindow(url, x, y, text, w=windowWidth/3, h=windowHeight/2) {
 	windowElement.appendChild(titleBar);
 	windowElement.appendChild(iframe);
 	
-	document.getElementById("iframes").appendChild(windowElement);
+	if (document.getElementById("iframes") != null) {
+		document.getElementById("iframes").appendChild(windowElement);
+	}
 	
 	closeButton.addEventListener("click", () => {
 	    windowElement.remove();
