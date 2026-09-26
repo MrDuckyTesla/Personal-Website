@@ -49,6 +49,7 @@ function setup() {
 			offsetX = e.clientX - draggingWindow.offsetLeft;
 			offsetY = e.clientY - draggingWindow.offsetTop;
 			draggingWindow.querySelector("iframe").style.pointerEvents = "none";
+			document.body.style.userSelect = "none";
 		}
 	})
 	
@@ -63,6 +64,7 @@ function setup() {
 		if (draggingWindow != null){
 			draggingWindow.querySelector("iframe").style.pointerEvents = "auto";	
 	    	draggingWindow = null;
+			document.body.style.userSelect = "auto";
 		}
 	});
 	
