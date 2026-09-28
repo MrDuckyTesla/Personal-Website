@@ -21,15 +21,35 @@
       		-->
       		<div class="center-text">
 	      		<form id="registerForm">
-				    <input id="username" type="text" placeholder="Username" required>
-				    <input id="email" type="email" placeholder="Email" required>
-				    <input id="password" type="password" placeholder="Password" required>
+					<input id="username" name="username" type="text" placeholder="Username" required>
+					<input id="email" name="email" type="email" placeholder="Email" required>
+					<input id="password" name="password" type="password" placeholder="Password" required>
 				
 					<div class="cf-turnstile" data-sitekey="0x4AAAAAAFFsRETO4onNToLy"></div>
 				
-				    <button type="submit">Register</button>
+					<button type="submit">Register</button>
 				</form>
       		</div>
+      		<script>
+	      		document.getElementById("registerForm").addEventListener("submit", async (e) => {
+	      			e.preventDefault();
+	      			const form = new FormData(e.target);
+	      			const response = await fetch("http://localhost:6767/api/users", {
+	      		   	method: "POST",
+	      		 		body: new URLSearchParams(form)
+	      			});
+	      			if (response.ok) {
+	      				console.log("Registered");
+	      				const verificationID = await response.text();
+	      				window.top.location.href = 
+	      					"https://github.com/login/oauth/authorize" + 
+	      					"?client_id=Ov23ligb9LkTZoqhCuwF" + 
+	      					"&scope=read:user" +
+	      					"&state=" + encodeURIComponent(verificationID);
+	      			} 
+	      			else {console.log("Registration failed");}
+	      		});
+      		</script>
     	</main>
     	<!--
     	<script src="../../toolkit.js"></script>
