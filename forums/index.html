@@ -20,21 +20,15 @@
       		<a href="../../index.html">Home</a>
       		-->
       		<div class="center-text">
-	      		<div>
-	      			<h1>Username</h1>
-					<input id="username">
-	      		</div>
-	      		<div>
-	      			<h1>Email</h1>
-					<input id="email" type="email">
-	      		</div>
-	      		<div>
-	      			<h1>Password</h1>
-					<input id="password" type="password">
-	      		</div>
-	      		<div class="cf-turnstile"
-				     data-sitekey="0x4AAAAAAFFsRETO4onNToLy">
-				</div>
+	      		<form id="registerForm">
+				    <input id="username" type="text" placeholder="Username" required>
+				    <input id="email" type="email" placeholder="Email" required>
+				    <input id="password" type="password" placeholder="Password" required>
+				
+					<div class="cf-turnstile" data-sitekey="0x4AAAAAAFFsRETO4onNToLy"></div>
+				
+				    <button type="submit">Register</button>
+				</form>
       		</div>
     	</main>
     	<!--
