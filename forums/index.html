@@ -6,6 +6,7 @@
     	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>
     	-->
+    	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     
     	<link rel="stylesheet" type="text/css" href="../windows.css">
     	<link rel="icon" type="image/x-icon" href="../icon.ico">
@@ -21,16 +22,19 @@
       		<div class="center-text">
 	      		<div>
 	      			<h1>Username</h1>
-					<input id="text">
+					<input id="username">
 	      		</div>
 	      		<div>
 	      			<h1>Email</h1>
-					<input id="text" type="email">
+					<input id="email" type="email">
 	      		</div>
 	      		<div>
 	      			<h1>Password</h1>
 					<input id="password" type="password">
 	      		</div>
+	      		<div class="cf-turnstile"
+				     data-sitekey="0x4AAAAAAFFsRETO4onNToLy">
+				</div>
       		</div>
     	</main>
     	<!--
