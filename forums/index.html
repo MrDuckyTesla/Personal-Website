@@ -41,7 +41,7 @@
 	      			const action = e.submitter.value;
 	      			
 	      			const response = await fetch(action === "login"? 
-	      				"http://localhost:6767/api/login" : "http://localhost:6767/api/users", {
+	      				"https://forum-api.mrduckytesla.com/api/login" : "https://forum-api.mrduckytesla.com/api/users", {
 	      		   			method: "POST", body: new URLSearchParams(form)
 	      			});
 	      			if (!response.ok) {
