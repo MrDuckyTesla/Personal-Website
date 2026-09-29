@@ -40,12 +40,15 @@
 	      			const form = new FormData(e.target);
 	      			const action = e.submitter.value;
 	      			
+	      			form.set("real", form.get("cf-turnstile-response"));
+	      			
 	      			const response = await fetch(action === "login"? 
 	      				"https://forum-api.mrduckytesla.com/api/login" : "https://forum-api.mrduckytesla.com/api/users", {
 	      		   			method: "POST", body: new URLSearchParams(form)
 	      			});
+	      			
 	      			if (!response.ok) {
-	      				console.log("Registration failed");
+	      				console.log(action === "login" ? "Login failed" : "Registration failed");
 	      				console.log("Status:", response.status);
 	      			    console.log("Response:", await response.text());
 	      			} 
