@@ -20,34 +20,50 @@
       		<a href="../../index.html">Home</a>
       		-->
       		<div class="center-text">
-	      		<form id="registerForm">
+      		<h1>Welcome to the MrDuckyTesla Forums!</h1>
+      		<h2>Please register or sign in below.</h2>
+	      		<form id="authForm">
 					<input id="username" name="username" type="text" placeholder="Username" required>
-					<input id="email" name="email" type="email" placeholder="Email" required>
+					<!-- <input id="email" name="email" type="email" placeholder="Email" required> -->
 					<input id="password" name="password" type="password" placeholder="Password" required>
 				
 					<div class="cf-turnstile" data-sitekey="0x4AAAAAAFFsRETO4onNToLy"></div>
 				
-					<button type="submit">Register</button>
+					<button type="submit" name="action" value="login">Log In</button>
+					<button type="submit" name="action" value="register">Register with github</button>
 				</form>
+				<p>Accounts are verified through github.</p>
       		</div>
       		<script>
 	      		document.getElementById("registerForm").addEventListener("submit", async (e) => {
 	      			e.preventDefault();
 	      			const form = new FormData(e.target);
-	      			const response = await fetch("http://localhost:6767/api/users", {
-	      		   	method: "POST",
-	      		 		body: new URLSearchParams(form)
+	      			const action = e.submitter.value;
+	      			
+	      			const response = await fetch(action === "login"? 
+	      				"http://localhost:6767/api/login" : "http://localhost:6767/api/users", {
+	      		   			method: "POST", body: new URLSearchParams(form)
 	      			});
-	      			if (response.ok) {
+	      			if (!response.ok) {
+	      				console.log("Registration failed");
+	      			} 
+	      			else if (action === "login") {
+	      				const authKey = await response.text();
+
+	      				localStorage.setItem("username", form.get("username"));
+	    				localStorage.setItem("authKey", authKey);
+	      		        
+	      		      	console.log("Logged in");
+	      			}
+	      			else {
 	      				console.log("Registered");
-	      				const verificationID = await response.text();
+	      				const state = await response.text();
 	      				window.top.location.href = 
 	      					"https://github.com/login/oauth/authorize" + 
-	      					"?client_id=Ov23ligb9LkTZoqhCuwF" + 
-	      					"&scope=read:user" +
-	      					"&state=" + encodeURIComponent(verificationID);
-	      			} 
-	      			else {console.log("Registration failed");}
+	      					"?client_id=Ov23liQOvNxULB7rtaVH" + 
+	      					"&scope=read:user%20user:email" +
+	      					"&state=" + encodeURIComponent(state);
+	      			}
 	      		});
       		</script>
     	</main>
