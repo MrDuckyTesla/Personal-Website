@@ -10,15 +10,18 @@
     	<link rel="icon" type="image/x-icon" href="../../icon.ico">
     	<meta charset="utf-8" />
     	<script>
-    		const response = await fetch(
-    			"https://forum-api.mrduckytesla.com/api/auth?" +
-    			new URLSearchParams({
-    				username: localStorage.getItem("username"),
-    				authKey: localStorage.getItem("authKey")
-    			})
-    		);
-    		
-    		if (!response.ok) {window.location.href = "../index.html";}
+    		async function checkAuth() {
+    			if (localStorage.getItem("username") != null && localStorage.getItem("authKey") != null) {
+		    		const response = await fetch(
+		    			"https://forum-api.mrduckytesla.com/api/auth?" +
+		    			new URLSearchParams({
+		    				username: localStorage.getItem("username"),
+		    				authKey: localStorage.getItem("authKey")
+		    			})
+		    		);
+		    		if (!response.ok) {window.location.href = "../index.html";}
+    			}
+    		} checkAuth();
     	</script>
 
   	</head>
