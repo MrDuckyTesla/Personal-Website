@@ -46,6 +46,8 @@
 	      			});
 	      			if (!response.ok) {
 	      				console.log("Registration failed");
+	      				console.log("Status:", response.status);
+	      			    console.log("Response:", await response.text());
 	      			} 
 	      			else if (action === "login") {
 	      				const authKey = await response.text();
