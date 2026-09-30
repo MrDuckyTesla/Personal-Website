@@ -59,21 +59,19 @@
 						const params = new URLSearchParams(post);
 						
 						const postElement = document.createElement("div");
+						postElement.style.textAlign = "center";
 						
 						const title = document.createElement("h2");
-						title.textContent = params.get("title");
+						title.textContent = params.get("title") + " - "+params.get("author");
 						
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
 						
-						const author = document.createElement("p");
-						author.textContent = params.get("author");
-						
 						postElement.appendChild(title);
 						postElement.appendChild(message);
-						postElement.appendChild(author);
 						
 						document.getElementById("posts").appendChild(postElement);
+						document.getElementById("posts").appendChild(document.createElement("br"));
 						
 						console.log(post);
 	      	        }
