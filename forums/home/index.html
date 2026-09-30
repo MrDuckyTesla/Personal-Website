@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-  		<title>Home Page</title>
+  		<title>Forums Home</title>
   		<meta name="description" content="Personal website belonging to MrDuckyTesla (aka Nico Lamas)">
     	<!--<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>-->
@@ -28,13 +28,62 @@
   	<body>
     	<div id="p5js"></div>
     	<main>
-      		<h1 class="center-text">Hello, I am Nico Lamas (aka MrDuckyTesla), welcome to my personal website!</h1>
-      		<h2 class="center-text">
-      			Feel free to mess around and take a look at all the available pages. Reloading the page will give you a random background, 
-      			and they all have mouse interactions, so have enjoy yourself. I made this website with the goal of being minimalistic in 
-      			its javascript usage, while also being completely dependency free (besides my one true love p5.js, best library ever <3). 
-      			This websites frontend is also completely open source and available on my github. 
-      		</h2>
+      		<h1 class="center-text">Hello, welcome to the FORUMS!</h1>
+      		<h2 class="center-text">Please be respectful of others when posting.</h2>
+      		
+      		<div id="posts"></div>
+      		
+      		<script>
+      			function loadPost(nextpost) {
+	      			const response = etch(
+					"https://forum-api.mrduckytesla.com/api/post/get?" +
+						new URLSearchParams({
+							num: nextpost,
+							username: localStorage.getItem("username"),
+							authkey: localStorage.getItem("authKey")
+						})
+					);
+	
+					if (response.ok) {
+						const params = new URLSearchParams(response.text());
+						
+						const postElement = document.createElement("div");
+						
+						const title = document.createElement("h2");
+						title.textContent = params.get("title");
+						
+						const message = document.createElement("p");
+						message.textContent = params.get("message");
+						
+						const author = document.createElement("p");
+						author.textContent = params.get("author");
+						
+						postElement.appendChild(title);
+						postElement.appendChild(message);
+						postElement.appendChild(author);
+						
+						document.getElementById("posts").appendChild(postElement);
+						
+						console.log(post);
+	      	        }
+	      		}
+      			
+      			const response = await fetch("https://forum-api.mrduckytesla.com/api/post/count");
+      			const postnum = Number(await response.text());
+      			
+      			let nextpost = postnum - 1;
+      			
+      			for (let i = 0; i < 10 && nextpost >= 0; i++) {
+      				await loadPost(nextpost--);
+      			}
+      			
+      			window.addEventListener("scroll", () => {
+      				if (nextpost >= 0 && window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+      					for (let i = 0; i < 10 && nextpost > 0; i++) {loadPost(nextpost--);}
+      				}
+      			})
+				
+      		</script>
       		
     	</main>
     	
