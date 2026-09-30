@@ -81,11 +81,13 @@
 	      	        }
 	      		}
       			
+      			let nextpost;
+      			
       			async function loadPosts() {
 	      			const countResponse = await fetch("https://forum-api.mrduckytesla.com/api/post/count");
 	      			const postnum = Number(await countResponse.text());
 	      			
-	      			let nextpost = postnum - 1;
+	      			nextpost = postnum - 1;
 	      			
 	      			for (let i = 0; i < 10 && nextpost >= 0; i++) {await loadPost(nextpost--);}
       			} loadPosts();
