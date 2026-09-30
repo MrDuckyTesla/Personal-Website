@@ -39,6 +39,8 @@
 	     		form.append("authkey", localStorage.getItem("authKey"));
 	     		form.set("real", form.get("cf-turnstile-response"));
 	      		
+	     		console.log([...form.entries()]);
+	     		
 	      		const response = await fetch("https://forum-api.mrduckytesla.com/api/post", {
 	      	   		method: "POST", body: new URLSearchParams(form)
 	      		});
