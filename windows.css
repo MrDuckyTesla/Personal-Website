@@ -52,6 +52,13 @@ a {
   	margin-right: 15px;
 }
 
+#postButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 4;
+}
+
 .center-text {
     text-align: center;
     width: var(--tx-wid, 600px);
