@@ -59,6 +59,13 @@ a {
     z-index: 4;
 }
 
+#refreshButton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 4;
+}
+
 .center-text {
     text-align: center;
     width: var(--tx-wid, 600px);
