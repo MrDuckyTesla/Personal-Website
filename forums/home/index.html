@@ -79,7 +79,7 @@
       			
       			for (let i = 0; i < 10 && nextpost >= 0; i++) {await loadPost(nextpost--);}
       			
-      			const loading = false;
+      			let loading = false;
       			window.addEventListener("scroll", async () => {
       				if (loading == false && nextpost >= 0 && window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
       					loading = true; for (let i = 0; i < 10 && nextpost >= 0; i++) {await loadPost(nextpost--);}
