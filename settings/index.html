@@ -159,9 +159,11 @@
 	      			const savedTxtP = getTextSize();
 	      			if (savedTxtP !== null) {sliderTxtP.value = savedTxtP;}
 	      			outputTxtP.textContent = sliderTxtP.value+"px";
+	      			document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      			parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      			sliderTxtP.addEventListener("input", () => {
 	      				outputTxtP.textContent = sliderTxtP.value+"px";
+	      				document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      				parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      				setTextSize(sliderTxtP.value);
 	      			});
@@ -182,6 +184,9 @@
 	      			if (savedTxtColor !== null) {
 	      				const [r, g, b] = savedTxtColor.split(", ");
 	      				sliderTxtClrR.value = r; sliderTxtClrG.value = g; sliderTxtClrB.value = b;
+	      				document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
+	      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
+	      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
 	      				parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
 	      				parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
 	      				parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
@@ -189,6 +194,9 @@
 					[sliderTxtClrR, sliderTxtClrG, sliderTxtClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
+	      					document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
+		      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
+		      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
 	      					parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
 	      					parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
 	      					parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
@@ -207,9 +215,11 @@
 	      			const savedStrP = getStrokeSize();
 	      			if (savedStrP !== null) {sliderStrP.value = savedStrP;}
 	      			outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
+	      			document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      			parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      			sliderStrP.addEventListener("input", () => {
 	      				outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
+	      				document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      				parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      				setStrokeSize(sliderStrP.value);
 	      			});
@@ -230,6 +240,9 @@
 	      			if (savedStrColor !== null) {
 	      				const [r, g, b] = savedStrColor.split(", ");
 	      				sliderStrClrR.value = r; sliderStrClrG.value = g; sliderStrClrB.value = b;
+	      				document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
+	      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
+	      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
 	      				parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
 	      				parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
 	      				parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
@@ -237,6 +250,9 @@
 					[sliderStrClrR, sliderStrClrG, sliderStrClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
+	      					document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
+		      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
+		      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
 	      					parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
 	      					parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
 	      					parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
