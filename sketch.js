@@ -180,5 +180,7 @@ function addWindow(url, x, y, text, w=windowWidth/3, h=windowHeight/2) {
 	    windowElement.remove();
 	});
 	
+	updateWindowsText();
+	
 	return windowElement;
 }
