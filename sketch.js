@@ -37,13 +37,12 @@ function setup() {
 	document.documentElement.style.setProperty("--tx-srval", Number(colorSaved[0]));
 	document.documentElement.style.setProperty("--tx-sgval", Number(colorSaved[1]));
 	document.documentElement.style.setProperty("--tx-sbval", Number(colorSaved[2]));
-	// update other iframes
-	updateWindowsText();
 	// const x = document.getElementById("p5js");
 	window.colorBkgChanged = true;
 	
 	addWindow('main/websiteinfo/index.html', windowWidth/6, windowHeight/5, 'website_info.txt', windowWidth/3, windowHeight/1.4);
 	addWindow('main/image/index.html', windowWidth/1.7, windowHeight/5, 'website_icon.png', min(windowWidth/5, 340), min(windowHeight/2.5, 370));
+	updateWindowsText();
 	
 	document.addEventListener("pointerdown", (e) => {
 		const titleBar = e.target.closest(".title-bar");
@@ -179,8 +178,6 @@ function addWindow(url, x, y, text, w=windowWidth/3, h=windowHeight/2) {
 	closeButton.addEventListener("click", () => {
 	    windowElement.remove();
 	});
-	
-	updateWindowsText();
 	
 	return windowElement;
 }
