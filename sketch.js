@@ -37,6 +37,8 @@ function setup() {
 	document.documentElement.style.setProperty("--tx-srval", Number(colorSaved[0]));
 	document.documentElement.style.setProperty("--tx-sgval", Number(colorSaved[1]));
 	document.documentElement.style.setProperty("--tx-sbval", Number(colorSaved[2]));
+	// update other iframes
+	updateWindowsText();
 	// const x = document.getElementById("p5js");
 	window.colorBkgChanged = true;
 	
