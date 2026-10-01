@@ -161,10 +161,12 @@
 	      			outputTxtP.textContent = sliderTxtP.value+"px";
 	      			document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      			parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
+	      			parent.updateWindowsText();
 	      			sliderTxtP.addEventListener("input", () => {
 	      				outputTxtP.textContent = sliderTxtP.value+"px";
 	      				document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
 	      				parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
+	      				parent.updateWindowsText();
 	      				setTextSize(sliderTxtP.value);
 	      			});
 				</script>
@@ -190,6 +192,7 @@
 	      				parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
 	      				parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
 	      				parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
+	      				parent.updateWindowsText();
 	      			} outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
 					[sliderTxtClrR, sliderTxtClrG, sliderTxtClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
@@ -200,6 +203,7 @@
 	      					parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
 	      					parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
 	      					parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
+	      					parent.updateWindowsText();
 	      					setTextColor(getNewTxtColorStr());
 	      				});
 	      			}); function getNewTxtColorStr() {return sliderTxtClrR.value + ", " + sliderTxtClrG.value + ", " + sliderTxtClrB.value}
@@ -217,10 +221,12 @@
 	      			outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
 	      			document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      			parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
+	      			parent.updateWindowsText();
 	      			sliderStrP.addEventListener("input", () => {
 	      				outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
 	      				document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
 	      				parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
+	      				parent.updateWindowsText();
 	      				setStrokeSize(sliderStrP.value);
 	      			});
 				</script>
@@ -246,6 +252,7 @@
 	      				parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
 	      				parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
 	      				parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
+	      				parent.updateWindowsText();
 	      			} outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
 					[sliderStrClrR, sliderStrClrG, sliderStrClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
@@ -256,6 +263,7 @@
 	      					parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
 	      					parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
 	      					parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
+	      					parent.updateWindowsText();
 	      					setStrokeColor(getNewStrColorStr());
 	      				});
 	      			}); function getNewStrColorStr() {return sliderStrClrR.value + ", " + sliderStrClrG.value + ", " + sliderStrClrB.value}

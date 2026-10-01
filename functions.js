@@ -103,3 +103,16 @@
 			parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
     		outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
     	}
+		
+		function updateWindowsText() {
+			document.querySelectorAll("#iframes iframe").forEach(iframe => {
+				iframe.contentDocument.documentElement.style.setProperty("--tx-fval", getComputedStyle(document.documentElement).getPropertyValue("--tx-fval"));
+				iframe.contentDocument.documentElement.style.setProperty("--tx-trval", getComputedStyle(document.documentElement).getPropertyValue("--tx-trval"));
+				iframe.contentDocument.documentElement.style.setProperty("--tx-tgval", getComputedStyle(document.documentElement).getPropertyValue("--tx-tgval"));
+				iframe.contentDocument.documentElement.style.setProperty("--tx-tbval", getComputedStyle(document.documentElement).getPropertyValue("--tx-tbval"));
+				iframe.contentDocument.documentElement.style.setProperty("--tx-sval", getComputedStyle(document.documentElement).getPropertyValue("--tx-sval"));
+				iframe.contentDocument.documentElement.style.setProperty("--tx-srval", getComputedStyle(document.documentElement).getPropertyValue("--tx-srval"));
+				iframe.contentDocument.documentElement.style.setProperty("--tx-sgval", getComputedStyle(document.documentElement).getPropertyValue("--tx-sgval"));
+				iframe.contentDocument.documentElement.style.setProperty("--tx-sbval", getComputedStyle(document.documentElement).getPropertyValue("--tx-sbval"));
+			});
+		}
