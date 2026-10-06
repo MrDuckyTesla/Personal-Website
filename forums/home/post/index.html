@@ -5,13 +5,21 @@
   		<meta name="description" content="Personal website belonging to MrDuckyTesla (aka Nico Lamas)">
     	<!--<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>-->
-    	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    	<!-- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>-->
     	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     	<!-- <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>-->
     	<script src="../../../toolkit.js"></script>
     	<script src="../../../functions.js"></script>
     	<script src="../../../sketch.js"></script>
     	<script src="../../../backgrounds.js"></script>
+    	
+    	<script>
+			window.addEventListener("load", () => {
+				const script = document.createElement("script");
+				script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+				document.body.appendChild(script);
+			});
+		</script>
     
     	<link rel="stylesheet" type="text/css" href="../../../style.css">
     	<link rel="icon" type="image/x-icon" href="../../../icon.ico">
@@ -20,6 +28,8 @@
   	<body>
     	<div id="p5js"></div>
     	<main>
+    		<a href="../index.html">Back</a>
+    		
       		<h1 class="center-text">Hello, welcome to the FORUMS!</h1>
       		<h2 class="center-text">Please be respectful of others when posting.</h2>
       		
