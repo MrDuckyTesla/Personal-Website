@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   	<head>
-  		<title>Forums</title>
-  		<!--
+  		<title>Forums Log in | MrDuckyTesla.com</title>
     	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
-    	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>
-    	-->
-    	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    	<!-- <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>-->
+    	<script src="../toolkit.js"></script>
+    	<script src="../functions.js"></script>
+    	<script src="../sketch.js"></script>
+    	<script src="../backgrounds.js"></script>
+    	
+    	<!--  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+    	<script>
+			window.addEventListener("load", () => {
+				const script = document.createElement("script");
+				script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+				document.body.appendChild(script);
+			});
+		</script>
     
-    	<link rel="stylesheet" type="text/css" href="../windows.css">
+    	<link rel="stylesheet" type="text/css" href="../style.css">
     	<link rel="icon" type="image/x-icon" href="../icon.ico">
     	<meta charset="utf-8" />
     	<script>
@@ -30,9 +40,9 @@
   	<body>
     	<div id="p5js"></div>
     	<main>
-    		<!--
-      		<a href="../../index.html">Home</a>
-      		-->
+    	
+      		<a href="../index.html">Home</a>
+      		
       		<div class="center-text">
       		<h1>Welcome to the MrDuckyTesla Forums!</h1>
       		<h2>Please register or sign in below.</h2>
@@ -106,11 +116,6 @@
 	      		});
       		</script>
     	</main>
-    	<!--
-    	<script src="../../toolkit.js"></script>
-    	<script src="../../sketch.js"></script>
-    	<script src="../../backgrounds.js"></script>
-    	-->
-    
+    	
 	</body>
 </html>

@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-  		<title>Home Page</title>
+  		<title>Friends | MrDuckyTesla.com</title>
   		<meta name="description" content="Personal website belonging to MrDuckyTesla (aka Nico Lamas)">
-    	<!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
-    	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script> -->
+    	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    	<!-- <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script> -->
     
-    	<link rel="stylesheet" type="text/css" href="../windows.css">
-    	<link rel="icon" type="image/x-icon" href="icon.ico">
+    	<link rel="stylesheet" type="text/css" href="../style.css">
+    	<link rel="icon" type="image/x-icon" href="../icon.ico">
     	<meta charset="utf-8" />
 
   	</head>
   	<body>
     	<div id="p5js"></div>
     	<main>
+    	<a href="../index.html">Home</a>
     		<div class="center-text">
 	    		<h1>Browse my friends websites!</h1>
-	    		<a href="#" onclick="window.frameElement.src = 'https://catgirlforest.com/';">catgirlforest.com</a>
-				<a href="#" onclick="window.frameElement.src = 'https://deviwilsty.com/';">deviwilsty.com</a>
-				<a href="#" onclick="window.frameElement.src = 'https://duckytesla.com/';">duckytesla.com</a>
-				<h1>Lose at my friends game! You wont beat it!</h1>
-				<a href="games/index.html" target="_self">Glyph Gatherer</a>
+	    		<a href="https://catgirlforest.com/" target="website viewer">catgirlforest.com</a>
+				<a href="https://deviwilsty.com/" target="website viewer">deviwilsty.com</a>
+				<a href="https://duckytesla.com/" target="website viewer">duckytesla.com</a>
       		</div>
+      		<div class="center-element"><iframe name="website viewer" width="1600px" height="1000px"></iframe></div>
+			<div class="center-text">
+				<h1>Lose at my friends game! You wont beat it!</h1>
+				<a href="games/index.html" target="game viewer">Glyph Gatherer</a>
+			</div>
+			<div class="center-element"><iframe name="game viewer" width="800px" height="600px"></iframe></div>
+			<br>
     	</main>
     	
-    	<div id="iframes"></div>
+    	<script src="../toolkit.js"></script>
+    	<script src="../functions.js"></script>
+		<script src="../sketch.js"></script>
+    	<script src="../backgrounds.js"></script>
     
   	</body>
 </html>

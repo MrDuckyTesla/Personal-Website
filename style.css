@@ -54,3 +54,19 @@ a {
     width: var(--tx-wid, 600px);
     margin: 0 auto;
 }
+
+.center-text-no-width {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.center-element {
+	width: 100%;
+	display: flex;
+	justify-content: center
+}
+
+iframe {
+	border-radius: 10px;
+}
+

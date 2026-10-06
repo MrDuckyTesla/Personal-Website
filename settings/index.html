@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-  		<title>Settings</title>
+  		<title>Settings | MrDuckyTesla.com</title>
   		
-    	<!--<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
-    	<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>
+    	<!--<script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>-->
+    	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     	
-    	<script src="../../toolkit.js"></script>-->
+    	<script src="../toolkit.js"></script>
     	<script src="../functions.js"></script>
-    	<!--<script src="../../backgrounds.js"></script>-->
+    	<script src="../backgrounds.js"></script>
+    	<script src="../sketch.js"></script>
     
-    	<link rel="stylesheet" type="text/css" href="../windows.css">
+    	<link rel="stylesheet" type="text/css" href="../style.css">
     	<link rel="icon" type="image/x-icon" href="../icon.ico">
     	<meta charset="utf-8" />
 
@@ -18,9 +19,9 @@
     	<body>
     	<div id="p5js"></div>
     	<main>
-    		<!-- 
-      		<a href="../../index.html">Home</a>
-      		-->
+    		
+      		<a href="../index.html">Home</a>
+      		
       		<div class="center-text">
 	      		<h1>Background</h1>
 	      		<div>
@@ -37,7 +38,7 @@
 					sliderBkg.addEventListener("input", function () {
 						let bkg = getBackgroundVal(sliderBkg.value);
 						outputBkg.textContent = bkg;
-						setBackground(bkg); parent.changeSaved();
+						setBackground(bkg);
 					}); function getBackgroundVal(value) {
 						switch (value) {
 							case "0": return "Off";
@@ -92,7 +93,6 @@
 					[sliderBkgClrR, sliderBkgClrG, sliderBkgClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputBkgClr.textContent = "Color: "+getNewBkgColorStr();
-	      					parent.setBkgColor(getNewBkgColorStr());
 	      					setBkgColor(getNewBkgColorStr());
 	      				});
 	      			}); function getNewBkgColorStr() {return sliderBkgClrR.value + ", " + sliderBkgClrG.value + ", " + sliderBkgClrB.value}
@@ -108,13 +108,11 @@
 	      			const outputOpa = document.getElementById("opaVal");
 	      			const savedOpacity = getOpacity();
 	      			if (savedOpacity !== null) {sliderOpa.value = savedOpacity;}
-	      			parent.document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 	      			document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 	      			outputOpa.textContent = getOpacityVal(sliderOpa.value);
 					sliderOpa.addEventListener("input", function () {
 						let opa = getOpacityVal(sliderOpa.value);
 						outputOpa.textContent = opa;
-						parent.document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 						document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 						setOpacity(sliderOpa.value);
 					}); function getOpacityVal(value) {return (100-Number(value))+"%";}
@@ -135,17 +133,17 @@
 	      			if (savedOpaColor !== null) {
 	      				const [r, g, b] = savedOpaColor.split(", ");
 	      				sliderOpaClrR.value = r; sliderOpaClrG.value = g; sliderOpaClrB.value = b;
-	      				parent.document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
-	      				parent.document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
-	      				parent.document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 	      			} outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
+	      			document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+  					document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+  					document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 					[sliderOpaClrR, sliderOpaClrG, sliderOpaClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
 	      					outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
-	      					parent.document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
-	      					parent.document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
-	      					parent.document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 	      					setOpaColor(getNewOpaColorStr());
+	      					document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
+	      					document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
+	      					document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
 	      				});
 	      			}); function getNewOpaColorStr() {return sliderOpaClrR.value + ", " + sliderOpaClrG.value + ", " + sliderOpaClrB.value}
 				</script>
@@ -160,13 +158,9 @@
 	      			if (savedTxtP !== null) {sliderTxtP.value = savedTxtP;}
 	      			outputTxtP.textContent = sliderTxtP.value+"px";
 	      			document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
-	      			parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
-	      			parent.updateWindowsText();
 	      			sliderTxtP.addEventListener("input", () => {
 	      				outputTxtP.textContent = sliderTxtP.value+"px";
 	      				document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
-	      				parent.document.documentElement.style.setProperty("--tx-fval", sliderTxtP.value+"px");
-	      				parent.updateWindowsText();
 	      				setTextSize(sliderTxtP.value);
 	      			});
 				</script>
@@ -189,10 +183,6 @@
 	      				document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
 	      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
 	      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
-	      				parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
-	      				parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
-	      				parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
-	      				parent.updateWindowsText();
 	      			} outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
 					[sliderTxtClrR, sliderTxtClrG, sliderTxtClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
@@ -200,10 +190,6 @@
 	      					document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
 		      				document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
 		      				document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
-	      					parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
-	      					parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
-	      					parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
-	      					parent.updateWindowsText();
 	      					setTextColor(getNewTxtColorStr());
 	      				});
 	      			}); function getNewTxtColorStr() {return sliderTxtClrR.value + ", " + sliderTxtClrG.value + ", " + sliderTxtClrB.value}
@@ -220,13 +206,9 @@
 	      			if (savedStrP !== null) {sliderStrP.value = savedStrP;}
 	      			outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
 	      			document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
-	      			parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
-	      			parent.updateWindowsText();
 	      			sliderStrP.addEventListener("input", () => {
 	      				outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
 	      				document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
-	      				parent.document.documentElement.style.setProperty("--tx-sval", sliderStrP.value+"px");
-	      				parent.updateWindowsText();
 	      				setStrokeSize(sliderStrP.value);
 	      			});
 				</script>
@@ -249,10 +231,6 @@
 	      				document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
 	      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
 	      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
-	      				parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
-	      				parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
-	      				parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
-	      				parent.updateWindowsText();
 	      			} outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
 					[sliderStrClrR, sliderStrClrG, sliderStrClrB].forEach(slider => {
 	      				slider.addEventListener("input", () => {
@@ -260,10 +238,6 @@
 	      					document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
 		      				document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
 		      				document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
-	      					parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
-	      					parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
-	      					parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
-	      					parent.updateWindowsText();
 	      					setStrokeColor(getNewStrColorStr());
 	      				});
 	      			}); function getNewStrColorStr() {return sliderStrClrR.value + ", " + sliderStrClrG.value + ", " + sliderStrClrB.value}
