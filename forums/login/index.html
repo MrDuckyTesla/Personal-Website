@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+  		<title>Forums Log in | MrDuckyTesla.com</title>
+    	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    	<!-- <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.js"></script>-->
+    	<script src="../../toolkit.js"></script>
+    	<script src="../../functions.js"></script>
+    	<script src="../../sketch.js"></script>
+    	<script src="../../backgrounds.js"></script>
+    	
+    	<!--  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
+    	<script>
+			window.addEventListener("load", () => {
+				const script = document.createElement("script");
+				script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+				document.body.appendChild(script);
+			});
+		</script>
+    
+    	<link rel="stylesheet" type="text/css" href="../../style.css">
+    	<link rel="icon" type="image/x-icon" href="../../icon.ico">
+    	<meta charset="utf-8" />
+    	<script>
+    		async function checkAuth() {
+    			if (localStorage.getItem("username") != null && localStorage.getItem("authKey") != null) {
+		    		const response = await fetch(
+		    			"https://forum-api.mrduckytesla.com/api/auth?" +
+		    			new URLSearchParams({
+		    				username: localStorage.getItem("username"),
+		    				authkey: localStorage.getItem("authKey")
+		    			})
+		    		
+		    		);
+		    		if (response.ok) {window.location.href = "home/index.html";}
+    			}
+    		} checkAuth();
+    	</script>
+  	</head>
+  	<body>
+    	<div id="p5js"></div>
+    	<main>
+    	
+      		<a href="../index.html">Back</a>
+      		
+      		<div class="center-text">
+      		<h1>Welcome to the MrDuckyTesla Forums!</h1>
+      		<h2>Please register or sign in below.</h2>
+	      		<form id="authForm">
+					<input id="username" name="username" type="text" placeholder="Username" required>
+					<!-- <input id="email" name="email" type="email" placeholder="Email" required> -->
+					<input id="password" name="password" type="password" placeholder="Password" required>
+				
+					<div class="cf-turnstile" data-sitekey="0x4AAAAAAFFsRETO4onNToLy"></div>
+				
+					<p id="message"></p>
+				
+					<button type="submit" name="action" value="login">Log In</button>
+					<button type="submit" name="action" value="register">Register with github</button>
+				</form>
+				<p>Accounts are verified through github.</p>
+      		</div>
+      		<script>
+	      		document.getElementById("authForm").addEventListener("submit", async (e) => {
+	      			e.preventDefault();
+	      			const form = new FormData(e.target);
+	      			const action = e.submitter.value;
+	      			
+	      			form.set("real", form.get("cf-turnstile-response"));
+	      			
+	      			const response = await fetch(action === "login"? 
+	      				"https://forum-api.mrduckytesla.com/api/login" : "https://forum-api.mrduckytesla.com/api/users", {
+	      		   			method: "POST", body: new URLSearchParams(form)
+	      			});
+	      			
+	      			if (!response.ok) {
+	      				const message = document.getElementById("message");
+	      				
+	      				switch (response.status) {
+	      					case 401:
+	      						message.textContent = "Incorrect username or password.";
+	      						break;
+	      					case 409:
+	      						message.textContent = "Username already registered.";
+	      						break;
+	      					case 403:
+	      						message.textContent = "Please complete Verification";
+	      						break;
+	      					default:
+	      						message.textContent = "Please try again";
+	      						break;
+	      				}
+	      				console.log(action === "login" ? "Login failed" : "Registration failed");
+	      				console.log("Status:", response.status);
+	      			    console.log("Response:", await response.text());
+	      			} 
+	      			else if (action === "login") {
+	      				const authKey = await response.text();
+
+	      				localStorage.setItem("username", form.get("username"));
+	    				localStorage.setItem("authKey", authKey);
+	      		        
+	      		      	console.log("Logged in");
+	      		      	
+	      		      	window.location.href = "home/index.html";
+	      			}
+	      			else {
+	      				console.log("Registered");
+	      				const state = await response.text();
+	      				window.top.location.href = 
+	      					"https://github.com/login/oauth/authorize" + 
+	      					"?client_id=Ov23liQOvNxULB7rtaVH" + 
+	      					"&scope=read:user%20user:email" +
+	      					"&state=" + encodeURIComponent(state);
+	      			}
+	      		});
+      		</script>
+    	</main>
+    	
+	</body>
+</html>
