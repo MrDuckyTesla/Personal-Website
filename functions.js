@@ -1,5 +1,5 @@
 
-    	function setBackground(background) {localStorage.setItem("background", background);}
+    	function setBackground(background) {localStorage.setItem("background", background); parent.changeSaved();}
     	function getBackground() {return localStorage.getItem("background");}
     	function resetBackground() {
     		setBackground("Random");
@@ -33,7 +33,6 @@
     		sliderOpa.value = 30;
     		outputOpa.textContent = getOpacityVal(sliderOpa.value);
     		document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
-			parent.document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
     	}
 
     	function setOpaColor(color) {localStorage.setItem("opacolor", color);}
@@ -46,9 +45,6 @@
     		document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
     		document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
     		document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
-			parent.document.documentElement.style.setProperty("--bg-rval", sliderOpaClrR.value);
-			parent.document.documentElement.style.setProperty("--bg-gval", sliderOpaClrG.value);
-			parent.document.documentElement.style.setProperty("--bg-bval", sliderOpaClrB.value);
     		outputOpaClr.textContent = "Color: "+getNewOpaColorStr();
     	}
 
@@ -58,7 +54,6 @@
     		setTextSize(40);
     		sliderTxtP.value = 40;
     		document.documentElement.style.setProperty("--tx-fval", getTextSize()+"px");
-			parent.document.documentElement.style.setProperty("--tx-fval", getTextSize()+"px");
     		outputTxtP.textContent = sliderTxtP.value+"px";
     	}
 
@@ -72,9 +67,6 @@
     		document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
     		document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
     		document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
-			parent.document.documentElement.style.setProperty("--tx-trval", sliderTxtClrR.value);
-			parent.document.documentElement.style.setProperty("--tx-tgval", sliderTxtClrG.value);
-			parent.document.documentElement.style.setProperty("--tx-tbval", sliderTxtClrB.value);
     		outputTxtClr.textContent = "Color: "+getNewTxtColorStr();
     	}
 
@@ -84,7 +76,6 @@
     		setStrokeSize(1);
     		sliderStrP.value = 1;
     		document.documentElement.style.setProperty("--tx-sval", getStrokeSize()+"px");
-			parent.document.documentElement.style.setProperty("--tx-sval", getStrokeSize()+"px");
     		outputStrP.textContent = "Stroke: "+sliderStrP.value+"px";
     	}
 
@@ -98,21 +89,6 @@
     		document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
     		document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
     		document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
-			parent.document.documentElement.style.setProperty("--tx-srval", sliderStrClrR.value);
-			parent.document.documentElement.style.setProperty("--tx-sgval", sliderStrClrG.value);
-			parent.document.documentElement.style.setProperty("--tx-sbval", sliderStrClrB.value);
     		outputClrStr.textContent = "Stroke Color: "+getNewStrColorStr();
     	}
 		
-		function updateWindowsText() {
-			document.querySelectorAll("#iframes iframe").forEach(iframe => {
-				iframe.contentDocument.documentElement.style.setProperty("--tx-fval", getComputedStyle(document.documentElement).getPropertyValue("--tx-fval"));
-				iframe.contentDocument.documentElement.style.setProperty("--tx-trval", getComputedStyle(document.documentElement).getPropertyValue("--tx-trval"));
-				iframe.contentDocument.documentElement.style.setProperty("--tx-tgval", getComputedStyle(document.documentElement).getPropertyValue("--tx-tgval"));
-				iframe.contentDocument.documentElement.style.setProperty("--tx-tbval", getComputedStyle(document.documentElement).getPropertyValue("--tx-tbval"));
-				iframe.contentDocument.documentElement.style.setProperty("--tx-sval", getComputedStyle(document.documentElement).getPropertyValue("--tx-sval"));
-				iframe.contentDocument.documentElement.style.setProperty("--tx-srval", getComputedStyle(document.documentElement).getPropertyValue("--tx-srval"));
-				iframe.contentDocument.documentElement.style.setProperty("--tx-sgval", getComputedStyle(document.documentElement).getPropertyValue("--tx-sgval"));
-				iframe.contentDocument.documentElement.style.setProperty("--tx-sbval", getComputedStyle(document.documentElement).getPropertyValue("--tx-sbval"));
-			});
-		}

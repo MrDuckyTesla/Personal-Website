@@ -30,32 +30,17 @@
 				</div>
 				<input type="range" id="bkg" min="0" max="5" value="5">
 				<script>
+					const backgrounds = ["Off", "Bouncy", "Repel", "Radial", "Follow", "Random"];
 					const sliderBkg = document.getElementById("bkg");
 					const outputBkg = document.getElementById("bkgVal");
 					const savedBackground = getBackground();
-	      			if (savedBackground !== null) {sliderBkg.value = getBackgroundVal(savedBackground);}
-					outputBkg.textContent = getBackgroundVal(sliderBkg.value);
-					sliderBkg.addEventListener("input", function () {
-						let bkg = getBackgroundVal(sliderBkg.value);
+	      			if (savedBackground !== null) {sliderBkg.value = backgrounds.indexOf(savedBackground);}
+					outputBkg.textContent = backgrounds[sliderBkg.value];
+					sliderBkg.addEventListener("input", () => {
+						let bkg = backgrounds[sliderBkg.value];
 						outputBkg.textContent = bkg;
 						setBackground(bkg);
-					}); function getBackgroundVal(value) {
-						switch (value) {
-							case "0": return "Off";
-							case "1": return "Bouncy";
-							case "2": return "Repel";
-							case "3": return "Radial";
-							case "4": return "Follow";
-							case "5": return "Random";
-							case "Off": return "0";
-							case "Bouncy": return "1";
-							case "Repel": return "2";
-							case "Radial": return "3";
-							case "Follow": return "4";
-							case "Random": return "5";
-							default: return "-1";
-						}
-					}
+					});
 				</script>
 	      		<div>
 	      		<span id="pixVal">Pixelation: 10%</span>
@@ -110,7 +95,7 @@
 	      			if (savedOpacity !== null) {sliderOpa.value = savedOpacity;}
 	      			document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
 	      			outputOpa.textContent = getOpacityVal(sliderOpa.value);
-					sliderOpa.addEventListener("input", function () {
+					sliderOpa.addEventListener("input", () => {
 						let opa = getOpacityVal(sliderOpa.value);
 						outputOpa.textContent = opa;
 						document.documentElement.style.setProperty("--bg-opacity", sliderOpa.value / 100);
