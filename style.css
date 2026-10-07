@@ -51,7 +51,7 @@ a {
 
 .center-text {
     text-align: center;
-    width: var(--tx-wid, 600px);
+    width: var(--tx-wid, 650px);
     margin: 0 auto;
 }
 
