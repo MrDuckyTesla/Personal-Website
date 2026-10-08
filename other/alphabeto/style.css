@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(235,235,0);
+  color: rgb(0,0,0)
+}
+
+dt {
+  color: rgb(0,0,0);
+}
+
+dl {
+  background-color: rgb(255,255,0)
+}
+
+dd {
+/*   background-color: rgb(255,255,0); */
+  color: rgb(0,0,0)
+}
