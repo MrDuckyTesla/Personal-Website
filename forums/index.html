@@ -44,6 +44,10 @@
     		<a href="../index.html">Home</a>
     		<a href="post/index.html">Create Post</a>
     		<a href="index.html">Refresh</a>
+    		<a href="#" onclick="changeCategory(0)">Official</a>
+    		<a href="#" onclick="changeCategory(1)">Main</a>
+    		<a href="#" onclick="changeCategory(2)">Politics</a>
+    		<a href="#" onclick="changeCategory(3)">Help</a>
     		
     		<div>
 		      	<h1 class="center-text">Hello, welcome to the FORUMS!</h1>
@@ -55,13 +59,14 @@
       		<div id="posts"></div>
       		
       		<script>
-      			async function loadPost(nextpost) {
+      			async function loadPost(nextpost, category) {
 	      			const response = await fetch(
 					"https://forum-api.mrduckytesla.com/api/post/get?" +
 						new URLSearchParams({
 							num: nextpost,
 							username: localStorage.getItem("username"),
-							authkey: localStorage.getItem("authKey")
+							authkey: localStorage.getItem("authKey"),
+							cat: category
 						})
 					);
 	
@@ -88,7 +93,7 @@
 	      	        }
 	      		}
       			
-      			let nextpost;
+      			let nextpost, category = 0;
       			
       			async function loadPosts() {
 	      			const countResponse = await fetch("https://forum-api.mrduckytesla.com/api/post/count");
@@ -98,6 +103,10 @@
 	      			
 	      			for (let i = 0; i < 10 && nextpost >= 0; i++) {await loadPost(nextpost--);}
       			} loadPosts();
+      			
+      			async function changeCategory(cat) {
+      				category = cat;
+      			}
       			
       			let loading = false;
       			window.addEventListener("scroll", async () => {
