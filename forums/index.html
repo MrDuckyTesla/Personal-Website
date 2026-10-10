@@ -77,7 +77,6 @@
 						const params = new URLSearchParams(post);
 						
 						const postElement = document.createElement("div");
-						
 						postElement.style.textAlign = "center";
 						
 						const pfp = document.createElement("img");
@@ -92,9 +91,9 @@
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
 						
-						postElement.appendChild(title);
 						postElement.appendChild(pfp);
-						postElement.appendChild("-"+author);
+						postElement.appendChild(author);
+						postElement.appendChild(title);
 						postElement.appendChild(message);
 						
 						document.getElementById("posts").appendChild(postElement);
