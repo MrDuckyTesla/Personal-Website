@@ -89,7 +89,7 @@
 						title.textContent = params.get("title");
 						
 						const time = document.createElement("p");
-						title.textContent = new Date(params.get("time")).toLocaleString();
+						title.textContent = new Date(Number(params.get("time"))).toLocaleString();
 						
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
