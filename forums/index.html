@@ -82,7 +82,7 @@
 						postElement.style.textAlign = "center";
 						
 						const pfp = document.createElement("img");
-						pfp.src = "https://avatars.githubusercontent.com/u/${params.get("+params.get("git")+")}?size=64";
+						pfp.src = "https://avatars.githubusercontent.com/u/"+params.get("git")+"?size=64";
 						pfp.className = "post-pfp";
 						
 						const title = document.createElement("h2");
