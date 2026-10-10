@@ -101,11 +101,13 @@
 	      			
 	      			nextpost = postnum - 1;
 	      			
-	      			for (let i = 0; i < 10 && nextpost >= 0; i++) {await loadPost(nextpost--);}
+	      			for (let i = 0; i < 10 && nextpost >= 0; i++) {await loadPost(nextpost--, category);}
       			} loadPosts();
       			
       			async function changeCategory(cat) {
       				category = cat;
+      				document.getElementById("posts").innerHTML = "";
+					await loadPosts();
       			}
       			
       			let loading = false;
