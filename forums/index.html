@@ -88,6 +88,9 @@
 						const title = document.createElement("h2");
 						title.textContent = params.get("title");
 						
+						const time = document.createElement("p");
+						title.textContent = new Date(params.get("time")).toLocaleString();
+						
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
 						
@@ -98,6 +101,7 @@
 						
 						corner.appendChild(pfp);
 						corner.appendChild(author);
+						corner.appendChild(time);
 						
 						postElement.appendChild(corner);
 						postElement.appendChild(title);
