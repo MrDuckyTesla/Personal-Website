@@ -83,6 +83,7 @@
 						
 						const pfp = document.createElement("img");
 						pfp.src = "https://avatars.githubusercontent.com/u/"+params.get("git")+"?size=64";
+						pfp.width="64"; pfp.height="64";
 						
 						const author = document.createElement("p");
 						author.textContent = params.get("author");
