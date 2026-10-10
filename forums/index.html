@@ -88,21 +88,19 @@
 						const title = document.createElement("h2");
 						title.textContent = params.get("title");
 						
-						
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
 						
-						const header = document.createElement("div");
-						header.style.display = "flex";
-						header.style.alignItems = "center";
-						header.style.justifyContent = "center";
-						header.style.gap = "10px";
-
-						header.appendChild(title);
-						header.appendChild(pfp);
-						header.appendChild(author);
+						const corner = document.createElement("div");
+						corner.style.display = "flex";
+						corner.style.alignItems = "center";
+						corner.style.gap = "10px";
 						
-						postElement.appendChild(header);
+						corner.appendChild(pfp);
+						corner.appendChild(author);
+						
+						postElement.appendChild(corner);
+						postElement.appendChild(title);
 						postElement.appendChild(message);
 						
 						document.getElementById("posts").appendChild(postElement);
