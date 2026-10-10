@@ -82,17 +82,25 @@
 						const pfp = document.createElement("img");
 						pfp.src = "https://avatars.githubusercontent.com/u/"+params.get("git")+"?size=64";
 						
+						const author = document.createElement("p");
+						author.textContent = params.get("author");
+						
 						const title = document.createElement("h2");
 						title.textContent = params.get("title");
 						
-						const author = document.createElement("p");
-						author.textContent = params.get("author");
 						
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
 						
-						postElement.appendChild(pfp);
-						postElement.appendChild(author);
+						const header = document.createElement("div");
+						header.style.display = "flex";
+						header.style.alignItems = "center";
+						header.style.gap = "10px";
+
+						header.appendChild(pfp);
+						header.appendChild(author);
+						
+						postElement.appendChild(header);
 						postElement.appendChild(title);
 						postElement.appendChild(message);
 						
