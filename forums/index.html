@@ -92,12 +92,9 @@
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
 						
-						const postInfo = document.createElement("div");
-						postInfo.appendChild(title);
-						postInfo.appendChild(author);
-						
+						postElement.appendChild(title);
 						postElement.appendChild(pfp);
-						postElement.appendChild(postInfo);
+						postElement.appendChild("-"+author);
 						postElement.appendChild(message);
 						
 						document.getElementById("posts").appendChild(postElement);
