@@ -43,7 +43,7 @@
     	
     		<a href="../index.html">Home</a>
     		<a href="post/index.html">Create Post</a>
-    		<a href="index.html">Refresh</a>
+    		<a href="a" onclick="reload()">Refresh</a>
     		<a href="#" onclick="changeCategory(0)">Official</a>
     		<a href="#" onclick="changeCategory(1)">Main</a>
     		<a href="#" onclick="changeCategory(2)">Politics</a>
@@ -94,6 +94,7 @@
 	      		}
       			
       			let nextpost, category = 0;
+      			localStorage.setItem("cat", 0);
       			
       			async function loadPosts() {
 	      			const countResponse = await fetch(
@@ -109,6 +110,11 @@
       			
       			async function changeCategory(cat) {
       				category = cat;
+      				localStorage.setItem("cat", cat);
+      				reload();
+      			}
+      			
+      			async function reload() {
       				document.getElementById("posts").innerHTML = "";
 					await loadPosts();
       			}

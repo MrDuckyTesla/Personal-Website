@@ -20,7 +20,8 @@
 		    			"https://forum-api.mrduckytesla.com/api/auth?" +
 		    			new URLSearchParams({
 		    				username: localStorage.getItem("username"),
-		    				authkey: localStorage.getItem("authKey")
+		    				authkey: localStorage.getItem("authKey"),
+		    				cat: localStorage.getItem("cat")
 		    			})
 		    		);
 		    		if (!response.ok) {window.location.href = "../login/index.html";}
