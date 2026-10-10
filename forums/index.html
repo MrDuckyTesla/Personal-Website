@@ -71,19 +71,38 @@
 					);
 	
 					if (response.ok) {
+						
 						const post = await response.text();
 						const params = new URLSearchParams(post);
 						
 						const postElement = document.createElement("div");
+						postElement.className = "post";
+						
+						const header = document.createElement("div");
 						postElement.style.textAlign = "center";
 						
+						const pfp = document.createElement("img");
+						pfp.src = "https://avatars.githubusercontent.com/u/${params.get("+params.get("git")+")}?size=64";
+						pfp.className = "post-pfp";
+						
 						const title = document.createElement("h2");
-						title.textContent = params.get("title") + " - "+params.get("author");
+						title.textContent = params.get("title");
+						
+						const author = document.createElement("p");
+						author.textContent = params.get("author");
 						
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
+						message.className = "post-message";
 						
-						postElement.appendChild(title);
+						const postInfo = document.createElement("div");
+						postInfo.appendChild(title);
+						postInfo.appendChild(message);
+						
+						header.appendChild(pfp);
+						header.appendChild(postInfo);
+						
+						postElement.appendChild(header);
 						postElement.appendChild(message);
 						
 						document.getElementById("posts").appendChild(postElement);

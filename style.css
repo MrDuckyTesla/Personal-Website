@@ -70,3 +70,42 @@ iframe {
 	border-radius: 10px;
 }
 
+.post {
+    max-width: 800px;
+    margin: 16px auto;
+    padding: 16px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    background: #252525;
+    color: white;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.post-pfp {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.post-header h2 {
+    margin: 0;
+}
+
+.post-header p {
+    margin: 4px 0 0;
+    color: #aaa;
+}
+
+.post-message {
+    margin-top: 16px;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
