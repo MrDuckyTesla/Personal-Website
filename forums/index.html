@@ -96,7 +96,10 @@
       			let nextpost, category = 0;
       			
       			async function loadPosts() {
-	      			const countResponse = await fetch("https://forum-api.mrduckytesla.com/api/post/count");
+	      			const countResponse = await fetch(
+	      				"https://forum-api.mrduckytesla.com/api/post/count" +
+	      				new URLSearchParams({cat: category})
+	      			);
 	      			const postnum = Number(await countResponse.text());
 	      			
 	      			nextpost = postnum - 1;
