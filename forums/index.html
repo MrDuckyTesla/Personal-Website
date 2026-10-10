@@ -77,14 +77,11 @@
 						const params = new URLSearchParams(post);
 						
 						const postElement = document.createElement("div");
-						postElement.className = "post";
 						
-						const header = document.createElement("div");
 						postElement.style.textAlign = "center";
 						
 						const pfp = document.createElement("img");
 						pfp.src = "https://avatars.githubusercontent.com/u/"+params.get("git")+"?size=64";
-						pfp.className = "post-pfp";
 						
 						const title = document.createElement("h2");
 						title.textContent = params.get("title");
@@ -94,14 +91,13 @@
 						
 						const message = document.createElement("p");
 						message.textContent = params.get("message");
-						message.className = "post-message";
 						
 						const postInfo = document.createElement("div");
 						postInfo.appendChild(title);
-						postInfo.appendChild(message);
+						postInfo.appendChild(author);
 						
-						header.appendChild(pfp);
-						header.appendChild(postInfo);
+						postElement.appendChild(pfp);
+						postElement.appendChild(postInfo);
 						
 						postElement.appendChild(header);
 						postElement.appendChild(message);
