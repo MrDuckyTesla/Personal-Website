@@ -69,11 +69,24 @@
 							cat: category
 						})
 					);
+	      			
+	      			const user = await fetch(
+	    					"https://forum-api.mrduckytesla.com/api/users?" +
+	    						new URLSearchParams({
+	    							num: nextpost,
+	    							username: localStorage.getItem("username"),
+	    							authkey: localStorage.getItem("authKey"),
+	    							cat: category
+	    						})
+	    					);
 	
-					if (response.ok) {
+					if (response.ok && user.ok) {
 						
 						const post = await response.text();
 						const params = new URLSearchParams(post);
+						
+						const user = await user.text();
+						const uparams = new URLSearchParams(user);
 						
 						const postElement = document.createElement("div");
 						postElement.className = "post";
@@ -82,7 +95,7 @@
 						postElement.style.textAlign = "center";
 						
 						const pfp = document.createElement("img");
-						pfp.src = "https://avatars.githubusercontent.com/u/"+params.get("git")+"?size=64";
+						pfp.src = "https://avatars.githubusercontent.com/u/"+uparams.get("git")+"?size=64";
 						pfp.className = "post-pfp";
 						
 						const title = document.createElement("h2");
